@@ -1,0 +1,32 @@
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: var(--background);
+    height: 4rem;
+
+    border-image: linear-gradient(to right, var(--accent-primary), var(--accent-secondary) 50%);
+    border-image-slice: 1;
+
+    border-bottom: 2px solid;
+}
+
+.nav-page {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+
+    border-radius: var(--border-radius);
+
+    transition: color 0.25s, background-color 0.25s;
+}
+
+.nav-page:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-primary);
+}

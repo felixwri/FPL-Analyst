@@ -1,0 +1,31 @@
+<form id="search" (ngSubmit)="onSubmit(searchInput.value)">
+  <input class="input-search" type="text" placeholder="Enter your team name" #searchInput name="teamID" />
+  <input class="input-button" type="button" value="Search" (click)="onSearch(searchInput.value)" />
+</form>
+
+<div *ngIf="teamID">
+  <div class="profile">
+    <div class="flex-between">
+      <h3>{{ teamData.name }}</h3>
+      <p>{{ teamData.id }}</p>
+    </div>
+  </div>
+  <div class="break"></div>
+  <div class="leagues">
+    <div class="flex-between league-title">
+      <h3>Invitational Leagues</h3>
+    </div>
+    <ul class="league-list">
+      <li *ngIf="teamData.leagues.length === 0" class="league-item list flex-between">
+        <div class="link">None available</div>
+      </li>
+      <li *ngFor="let league of teamData.leagues" class="league-item list">
+        <a class="link league-name" href="/league/{{ league.id }}">{{ league.name }}</a>
+        <div class="league-stats">
+          <span>Position: {{ league.entry_rank }}</span>
+          <span>Players: {{ league.rank_count }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

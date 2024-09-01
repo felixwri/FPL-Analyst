@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager.Server", "Manager.Server\Manager.Server.csproj", "{E4DA1720-D9EB-428A-B821-6E9D28B70211}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "manager.client", "manager.client\manager.client.esproj", "{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4DA1720-D9EB-428A-B821-6E9D28B70211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DA1720-D9EB-428A-B821-6E9D28B70211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DA1720-D9EB-428A-B821-6E9D28B70211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DA1720-D9EB-428A-B821-6E9D28B70211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD2886C-DDB2-47AA-A76F-5C2AE261C303}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAFBF169-8CDD-4D2F-A67B-1CD0A9ADED8B}
+	EndGlobalSection
+EndGlobal

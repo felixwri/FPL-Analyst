@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: rgb(35, 35, 35);
+    --darker-background: rgb(25, 25, 25);
+    --text-color: white;
+
+    --accent-primary: rgb(212, 138, 255);
+    --accent-secondary: rgb(156, 94, 192);
+
+    --border-radius: 5px;
+
+
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: "Noto Sans", sans-serif;
+}
+
+body {
+    padding: 5rem 1rem 1rem 1rem;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.list {
+    list-style: none;
+}
+
+.break {
+    height: 1rem;
+}
