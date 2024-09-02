@@ -3,6 +3,18 @@ main {
     background: linear-gradient(30deg, black, var(--background) 70%);
 }
 
+.graphic {
+    position: absolute;
+    bottom: 0;
+}
+
+.graphic svg {
+    width: 100vw;
+    height: 100%;
+
+    stroke-width: 5px;
+}
+
 .splash {
     height: 30vh;
     padding: 2rem;
@@ -77,6 +89,16 @@ text {
     svg {
         width: 100%;
         height: 100px;
+    }
+
+    .graphic {
+        position: absolute;
+        bottom: 10vh;
+    }
+
+    .graphic svg {
+        width: 100vw;
+        stroke-width: 10px;
     }
 
 }

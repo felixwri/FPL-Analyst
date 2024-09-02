@@ -11,7 +11,7 @@
     background-color: var(--darker-background);
     padding: 2rem;
     border-radius: var(--border-radius);
-
+    width: 50vw;
 }
 
 .league-title {
