@@ -5,6 +5,8 @@ import { ServerURL } from '../../../global';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { DataLoaderService } from '../../services/data-loader.service';
+import { StorageService } from '../../services/storage.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'team-search',
@@ -25,7 +27,12 @@ export class SearchIdComponent {
     leagues: [],
   };
 
-  constructor(private apiService: ApiService, private dataLoader: DataLoaderService) { }
+  constructor(
+    private apiService: ApiService,
+    private dataLoader: DataLoaderService,
+    private storageService: StorageService,
+    private router: Router
+  ) { }
 
 
   onSubmit(value: string) {
@@ -49,8 +56,14 @@ export class SearchIdComponent {
   
       
       this.dataLoader.setTeamData(this.teamData);
+
+      this.storageService.setTeamData(this.teamData);
       
       console.log(this.teamData)
     });
+  }
+
+  goToPersonal() {
+    this.router.navigate(['/personal']);
   }
 }

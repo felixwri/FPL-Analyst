@@ -39,8 +39,50 @@
 .team-name {
     color: var(--accent-primary);
     margin-right: 0.5rem;
+    overflow: hidden;
+    white-space: no-wrap;
 }
 
 .team-nav-display>svg {
     fill: var(--accent-primary);
+}
+
+.no-team {
+    color: var(--grey-text-color);
+}
+
+.site-name {
+    cursor: pointer;
+}
+
+.inactive {
+    color: var(--grey-text-color);
+}
+
+.inactive:hover {
+    color: var(--grey-text-color);
+}
+
+@media screen and (max-width: 850px) {
+    .team-name {
+        max-width: 4rem;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+
+
+@media screen and (max-width: 500px) {
+    #about {
+        display: none;
+    }
+
+    a {
+        display: none;
+    }
+
+    #navbar {
+        justify-content: space-between;
+    }
 }

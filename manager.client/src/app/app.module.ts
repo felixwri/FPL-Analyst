@@ -9,12 +9,14 @@ import { NavComponent } from "./nav/nav.component";
 import { LeagueComponent } from './league/league.component';
 import { FormsModule } from '@angular/forms';
 import { SearchIdComponent } from './components/search-id/search-id.component';
+import { PersonalComponent } from './personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LeagueComponent,
+    PersonalComponent,
   ],
   imports: [
     BrowserModule,

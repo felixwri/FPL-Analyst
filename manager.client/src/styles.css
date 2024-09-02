@@ -10,7 +10,10 @@
 :root {
     --background: rgb(35, 35, 35);
     --darker-background: rgb(20, 20, 20);
+    --black: rgb(5, 5, 5);
+
     --text-color: white;
+    --grey-text-color: rgb(150, 150, 150);
 
     --accent-primary: rgb(212, 138, 255);
     --accent-secondary: rgb(94, 96, 192);

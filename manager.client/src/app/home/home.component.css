@@ -48,6 +48,14 @@ text {
     text-anchor: middle;
 }
 
+@media screen and (max-width: 800px) {
+
+    svg {
+        width: 100%;
+        height: 150px;
+    }
+}
+
 @media screen and (max-width: 650px) {
 
     .headline {
@@ -58,11 +66,17 @@ text {
 @media screen and (max-width: 500px) {
 
     .shoulderline {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
 
-    .headline {
-        font-size: 4rem;
+    .splash {
+        padding: 0rem;
     }
+
+    svg {
+        width: 100%;
+        height: 100px;
+    }
+
 }

@@ -1,10 +1,10 @@
 <form id="search" (ngSubmit)="onSubmit(searchInput.value)">
-  <input class="input-search" type="text" placeholder="Enter your team name" #searchInput name="teamID" />
+  <input class="input-search" type="text" placeholder="Enter your team ID" #searchInput name="teamID" />
   <input class="input-button" type="button" value="Search" (click)="onSearch(searchInput.value)" />
 </form>
 
-<div *ngIf="teamID">
-  <div class="profile">
+<div *ngIf="teamID" class="search-results">
+  <div class="profile" (click)="goToPersonal()">
     <div class="flex-between">
       <h3>{{ teamData.name }}</h3>
       <p>{{ teamData.id }}</p>

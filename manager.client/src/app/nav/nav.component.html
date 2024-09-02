@@ -1,7 +1,8 @@
 <div id="navbar">
-  <div>FPL Manager</div>
-  <a href="/" class="nav-page link">Home</a>
-  <a href="/league" class="nav-page link">League</a>
+  <div (click)="goToHome()" class="site-name">FPL Analyst</div>
+  <a href="{{ personalLink }}" class="nav-page link {{ linkActive }}">Personal</a>
+  <a href="{{ leagueLink }}" class="nav-page link {{ linkActive }}">League</a>
+  <a href="/" id="about" class="nav-page link">About</a>
   <div>
     <div *ngIf="teamName" class="team-nav-display">
       <div class="team-name">{{ teamName }}</div>
@@ -12,5 +13,6 @@
         />
       </svg>
     </div>
+    <div *ngIf="!teamName" class="no-team">No Team Selected</div>
   </div>
 </div>
