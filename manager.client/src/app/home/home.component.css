@@ -1,40 +1,68 @@
-.input-search {
-    color: var(--text-color);
-    background-color: var(--darker-background);
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    border: none;
-    font-size: 1.2rem;
+main {
+    height: calc(100vh - 4rem);
+    background: linear-gradient(30deg, black, var(--background) 70%);
 }
 
-.input-search:focus {
-    outline: none;
-    border-bottom: 1px solid var(--accent-primary);
+.splash {
+    height: 30vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.input-button {
-    background-color: var(--accent-primary);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1.2rem;
-    cursor: pointer;
+.shoulderline {
+    font-size: 2rem;
+    font-weight: bold;
 
-    transition: background-color 0.25s;
-}
-
-.input-button:hover {
-    background-color: var(--accent-secondary);
-}
-
-#search {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
+
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    color: var(--accent-primary);
+
+    transform: translateY(50%);
 }
 
-#search input {
-    margin-right: 1rem;
+.headline {
+
+    font-size: 8rem;
+}
+
+svg {
+    font: bold 70px "Noto Sans", sans-serif;
+    width: 50rem;
+    height: 200px;
+}
+
+text {
+    fill: none;
+    stroke: var(--text-color);
+    stroke-width: 2px;
+    stroke-linejoin: round;
+    text-anchor: middle;
+}
+
+@media screen and (max-width: 650px) {
+
+    .headline {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .shoulderline {
+        font-size: 1rem;
+    }
+
+
+    .headline {
+        font-size: 4rem;
+    }
 }

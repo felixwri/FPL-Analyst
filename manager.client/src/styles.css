@@ -9,13 +9,15 @@
 
 :root {
     --background: rgb(35, 35, 35);
-    --darker-background: rgb(25, 25, 25);
+    --darker-background: rgb(20, 20, 20);
     --text-color: white;
 
     --accent-primary: rgb(212, 138, 255);
-    --accent-secondary: rgb(156, 94, 192);
+    --accent-secondary: rgb(94, 96, 192);
 
     --border-radius: 5px;
+
+    --nav-height: 4rem;
 
 
     background-color: var(--background);
@@ -24,7 +26,7 @@
 }
 
 body {
-    padding: 5rem 1rem 1rem 1rem;
+    padding-top: var(--nav-height);
 }
 
 .flex-between {

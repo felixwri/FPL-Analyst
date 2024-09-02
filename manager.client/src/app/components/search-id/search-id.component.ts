@@ -3,6 +3,8 @@ import { ApiService } from '../../services/api.service';
 import { TeamData } from '../../../types';
 import { ServerURL } from '../../../global';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { DataLoaderService } from '../../services/data-loader.service';
 
 @Component({
   selector: 'team-search',
@@ -23,7 +25,7 @@ export class SearchIdComponent {
     leagues: [],
   };
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private dataLoader: DataLoaderService) { }
 
 
   onSubmit(value: string) {
@@ -44,6 +46,10 @@ export class SearchIdComponent {
         this.teamData.dateJoined = new Date(res.joined_time);
         this.teamData.leagues = res.leagues.classic.filter((league: any) => league.league_type == "x");
       }
+  
+      
+      this.dataLoader.setTeamData(this.teamData);
+      
       console.log(this.teamData)
     });
   }

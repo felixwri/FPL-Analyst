@@ -13,10 +13,11 @@
 }
 
 .input-button {
-    background-color: var(--accent-primary);
+    background-color: var(--darker-background);
+    border: 2px solid var(--accent-primary);
     color: var(--text-color);
     padding: 0.5rem 1rem;
-    border: none;
+    /* border: none; */
     border-radius: var(--border-radius);
     font-size: 1.2rem;
     cursor: pointer;
@@ -25,7 +26,7 @@
 }
 
 .input-button:hover {
-    background-color: var(--accent-secondary);
+    background-color: var(--accent-primary);
 }
 
 #search {
@@ -77,4 +78,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    #search {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+
+    #search input {
+        margin-right: 0rem;
+        margin-bottom: 1rem;
+    }
+
+    .input-search {
+        height: 2.5rem;
+        width: 80%;
+    }
 }
