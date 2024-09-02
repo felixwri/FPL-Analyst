@@ -1,5 +1,9 @@
+using Manager.Server;
+
 var builder = WebApplication.CreateBuilder(args);
 var AllowSpecificOrigins = "_AllowSpecificOrigins";
+
+Cache cache = Cache.Instance;
 
 builder.Services.AddControllers();
 
