@@ -18,6 +18,7 @@ export class NavComponent {
   personalLink: string = "/personal";
   leagueLink: string = "/league";
   linkActive: "active" | "inactive" = "inactive";
+  sidebarActive: boolean = false;
 
   constructor(
     private dataLoader: DataLoaderService,

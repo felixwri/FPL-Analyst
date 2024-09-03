@@ -16,7 +16,6 @@ export class PersonalComponent {
 
   constructor(
     private storageService: StorageService,
-    private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router
   ) {}

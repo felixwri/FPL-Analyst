@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,24 +11,22 @@ import { FormsModule } from '@angular/forms';
 import { SearchIdComponent } from './components/search-id/search-id.component';
 import { PersonalComponent } from './personal/personal.component';
 import { FixturesComponent } from './personal/fixtures/fixtures.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LeagueComponent,
-    PersonalComponent,
-    FixturesComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NavComponent,
-    FormsModule,
-    SearchIdComponent,
-],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        LeagueComponent,
+        PersonalComponent,
+    ],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule,
+        AppRoutingModule,
+        NavComponent,
+        FormsModule,
+        SearchIdComponent,
+        FixturesComponent
+    ], providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())]
 })
 export class AppModule { }

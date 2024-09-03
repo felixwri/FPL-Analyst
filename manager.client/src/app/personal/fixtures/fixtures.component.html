@@ -1,5 +1,10 @@
 <section>
-  <div *ngIf="upcomingFixtures" class="fixture-component">
+  <div class="fixtures-chart">
+    <div>Fixture Difficulty</div>
+    <canvas class="chart" *ngIf="chart.hasData" baseChart [data]="chart.data" [options]="chart.options" [type]="'bar'">
+    </canvas>
+  </div>
+  <!-- <div *ngIf="upcomingFixtures" class="fixture-component">
     <div *ngFor="let fixtures of upcomingFixtures" class="fixture-entry">
       <div class="title">{{ fixtures.Team }}</div>
       <div class="opponents">
@@ -10,5 +15,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>

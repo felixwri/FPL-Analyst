@@ -10,6 +10,8 @@ export interface TeamData {
 export interface UpcomingFixtures {
     Id: number;
     Team: string;
+    TeamHomeDifficulty: number;
+    TeamAwayDifficulty: number;
     Fixtures: [
         {
             Id: number;

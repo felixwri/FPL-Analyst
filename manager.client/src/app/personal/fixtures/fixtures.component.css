@@ -51,3 +51,10 @@
     border-radius: 50%;
     background-color: red;
 }
+
+.fixtures-chart {
+    height: 50vh;
+    background-color: var(--darker-background);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}

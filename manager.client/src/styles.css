@@ -49,3 +49,7 @@ body {
 .break {
     height: 1rem;
 }
+
+.clickable {
+    cursor: pointer;
+}

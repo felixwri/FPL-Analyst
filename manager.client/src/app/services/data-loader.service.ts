@@ -11,6 +11,5 @@ export class DataLoaderService {
 
   setTeamData(data: TeamData | null) {
     this.teamData.next(data);
-    console.log("Updated")
   }
 }

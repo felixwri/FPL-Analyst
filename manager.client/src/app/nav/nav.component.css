@@ -63,6 +63,46 @@
     color: var(--grey-text-color);
 }
 
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60vw;
+    min-width: 15rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background);
+    padding: 1rem;
+    border-left: 2px solid var(--accent-primary);
+    z-index: 5;
+}
+
+.sidebar-title {
+    color: var(--accent-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-ball-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.sidebar-ball-icon>svg {
+    fill: var(--accent-primary);
+}
+
+.sidebar-link {
+    margin: 1rem 0rem;
+    padding: 1rem 1.5rem;
+}
+
 @media screen and (max-width: 850px) {
     .team-name {
         max-width: 4rem;
@@ -78,11 +118,16 @@
         display: none;
     }
 
-    a {
+    #navbar>a {
         display: none;
+    }
+
+    .team-name {
+        max-width: 6rem;
     }
 
     #navbar {
         justify-content: space-between;
+        padding: 0 1rem;
     }
 }
