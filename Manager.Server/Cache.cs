@@ -17,24 +17,26 @@ namespace Manager.Server
         /// Generates a list of upcoming fixtures which includes the team
         /// and their difficulty
         /// </summary>
-        private async void ProcessData()
+        private async void ProcessData(int limit = 5)
         {
             Prefetch prefetch = new();
             Teams = await prefetch.GetTeamAssignment();
             Fixtures = await prefetch.GetFixtures();
 
-            foreach ((int Id, TeamData team) in Teams)
+            foreach ((int _, TeamData team) in Teams)
             {
                 int n = 0;
                 UpcomingFixtures upcomingFixtures = new()
                 {
                     Team = team.Name,
-                    Id = team.Id
+                    Id = team.Id,
+                    TeamDifficultyHome = team.Strength_Overall_Home,
+                    TeamDifficultyAway = team.Strength_Overall_Away,
                 };
 
                 foreach (Fixture fixture in Fixtures)
                 {
-                    if (n >= 5) break;
+                    if (n >= limit) break;
                     if (fixture.Finished) continue;
                     if (team.Id != fixture.Team_H && team.Id != fixture.Team_A) continue;
                     if (team.Id == fixture.Team_H)
@@ -50,7 +52,11 @@ namespace Manager.Server
                             futureFixture.Id = awayTeam.Id;
                             futureFixture.AtHome = true;
                             futureFixture.Opponent = awayTeam.Name;
-                            futureFixture.OpponentDifficulty = awayTeam.Strength_Overall_Home;
+
+                            int difficulty = awayTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyHome;
+
+                            futureFixture.RelativeDifficulty = difficulty;
+                            futureFixture.OpponentDifficulty = awayTeam.Strength_Overall_Away;
                             futureFixture.Kickoff = fixture.Kickoff_Time;
                             upcomingFixtures.Fixtures.Add(futureFixture);
                         }
@@ -70,9 +76,12 @@ namespace Manager.Server
                             futureFixture.Id = homeTeam.Id;
                             futureFixture.AtHome = false;
                             futureFixture.Opponent = homeTeam.Name;
-                            futureFixture.OpponentDifficulty = homeTeam.Strength_Overall_Home;
-                            futureFixture.Kickoff = fixture.Kickoff_Time;
 
+                            int difficulty = homeTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyAway;
+
+                            futureFixture.RelativeDifficulty = difficulty;
+                            futureFixture.OpponentDifficulty = homeTeam.Strength_Overall_Away;
+                            futureFixture.Kickoff = fixture.Kickoff_Time;
                             upcomingFixtures.Fixtures.Add(futureFixture);
                         }
 
@@ -96,6 +105,8 @@ namespace Manager.Server
     {
         public int Id { get; set; }
         public string Team { get; set; } = string.Empty;
+        public int TeamDifficultyHome { get; set; }
+        public int TeamDifficultyAway { get; set; }
         public List<FutureFixture> Fixtures { get; set; } = [];
     }
 
@@ -107,7 +118,8 @@ namespace Manager.Server
         public int Id { get; set; }
         public bool AtHome { get; set; }
         public string Opponent { get; set; } = string.Empty;
-        public string OpponentDifficulty { get; set; } = string.Empty;
+        public int OpponentDifficulty { get; set; }
+        public int RelativeDifficulty { get; set; }
         public DateTime Kickoff { get; set; }
     }
 }

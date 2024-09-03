@@ -6,3 +6,18 @@ export interface TeamData {
     dateJoined: Date;
     leagues: any[],
 }
+
+export interface UpcomingFixtures {
+    Id: number;
+    Team: string;
+    Fixtures: [
+        {
+            Id: number;
+            AtHome: boolean;
+            Opponent: string;
+            RelativeDifficulty: number;
+            OpponentDifficulty: number;
+            Kickoff: Date;
+        }
+    ]
+}

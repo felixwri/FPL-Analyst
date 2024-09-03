@@ -1,0 +1,53 @@
+.fixture-component {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0.5rem;
+
+    background-color: var(--darker-background);
+    border-radius: var(--border-radius);
+}
+
+.fixture-entry {
+    display: flex;
+    margin-top: 10px;
+    margin-right: 1rem;
+}
+
+.title {
+    /* margin-right: 1rem; */
+    min-width: 10rem;
+    text-wrap: nowrap;
+}
+
+.opponents {
+    display: flex;
+}
+
+.opponent {
+    padding: 0.5rem;
+    font-size: 0.6rem;
+    text-wrap: nowrap;
+}
+
+.fixture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.o-g {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.o-r {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: red;
+}

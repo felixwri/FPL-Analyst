@@ -1,0 +1,14 @@
+<section>
+  <div *ngIf="upcomingFixtures" class="fixture-component">
+    <div *ngFor="let fixtures of upcomingFixtures" class="fixture-entry">
+      <div class="title">{{ fixtures.Team }}</div>
+      <div class="opponents">
+        <div *ngFor="let fixture of fixtures.Fixtures" class="fixture">
+          <span *ngIf="fixture.RelativeDifficulty < 0" class="o-g"></span>
+          <span *ngIf="fixture.RelativeDifficulty >= 0" class="o-r"></span>
+          <span class="opponent">{{ fixture.Opponent }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -52,18 +52,15 @@ export class SearchIdComponent {
         this.teamData.points = res.summary_overall_points;
         this.teamData.dateJoined = new Date(res.joined_time);
         this.teamData.leagues = res.leagues.classic.filter((league: any) => league.league_type == "x");
-      }
-  
-      
-      this.dataLoader.setTeamData(this.teamData);
+        this.dataLoader.setTeamData(this.teamData);
 
-      this.storageService.setTeamData(this.teamData);
-      
+        this.storageService.setTeamData(this.teamData);
+      }
       console.log(this.teamData)
     });
   }
 
   goToPersonal() {
-    this.router.navigate(['/personal']);
+    this.router.navigate([`/personal/${this.teamID}`]);
   }
 }

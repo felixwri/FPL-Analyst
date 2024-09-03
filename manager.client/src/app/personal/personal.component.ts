@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { TeamData } from '../../types';
+import { TeamData, UpcomingFixtures } from '../../types';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { ServerURL } from '../../global';
 
 @Component({
   selector: 'app-personal',
@@ -14,18 +16,16 @@ export class PersonalComponent {
 
   constructor(
     private storageService: StorageService,
+    private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     let teamID = this.route.snapshot.paramMap.get('id');
     if (!teamID) {
-      // this.router.navigate(['/']);
-      console.log("returned")
+      this.router.navigate(['/']);
     }
-
-
     this.teamData = this.storageService.getTeamData();
     this.personalID = this.teamData?.id || null;
   }

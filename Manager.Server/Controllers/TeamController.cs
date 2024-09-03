@@ -11,20 +11,9 @@ namespace Manager.Server.Controllers
     [Route("[controller]")]
     public class TeamController : ControllerBase
     {
-        private static async Task<string> GetFixtures()
-        {
-            return await Fetch.Get(Resources.Fixtures());
-        }
-
         private static async Task<string> GetTeamData(string teamID)
         {
             return await Fetch.Get(Resources.TeamData(teamID));
-        }
-
-        [HttpGet(Name = "GetTeam")]
-        public async Task<string> Get()
-        {
-            return await GetFixtures();
         }
 
         [HttpPost(Name = "PostTeam")]

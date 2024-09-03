@@ -60,8 +60,8 @@ namespace Manager.Server
         public int Code { get; set; }
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Strength_Overall_Home { get; set; } = string.Empty;
-        public string Strength_Overall_Away { get; set; } = string.Empty;
+        public int Strength_Overall_Home { get; set; }
+        public int Strength_Overall_Away { get; set; }
 
         public override string ToString()
         {

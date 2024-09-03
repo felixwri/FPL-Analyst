@@ -10,6 +10,7 @@ import { LeagueComponent } from './league/league.component';
 import { FormsModule } from '@angular/forms';
 import { SearchIdComponent } from './components/search-id/search-id.component';
 import { PersonalComponent } from './personal/personal.component';
+import { FixturesComponent } from './personal/fixtures/fixtures.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PersonalComponent } from './personal/personal.component';
     HomeComponent,
     LeagueComponent,
     PersonalComponent,
+    FixturesComponent,
   ],
   imports: [
     BrowserModule,
