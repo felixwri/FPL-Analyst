@@ -1,0 +1,62 @@
+.display-options {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - var(--nav-height));
+    background-color: var(--translucent-background);
+
+    backdrop-filter: blur(3px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-options {
+    /* background-color: var(--darker-background); */
+    border-radius: var(--border-radius);
+    max-width: 25rem;
+    width: 50vw;
+}
+
+.modal-outer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.modal-outer>svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+.league-title {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.league-option {
+    background-color: var(--darker-background);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: 2px solid var(--accent-primary);
+
+    transition: background-color 0.25s;
+}
+
+.league-option:hover {
+    background-color: var(--light-background);
+}
+
+.league-members {
+    color: var(--grey-text-color);
+}
+
+@media screen and (max-width: 640px) {
+    .modal-options {
+        width: 90vw;
+    }
+}

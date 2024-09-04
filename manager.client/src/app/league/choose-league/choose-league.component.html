@@ -1,0 +1,34 @@
+<div *ngIf="display" class="display-options">
+  <div class="modal-outer">
+    <svg
+      class="icon-hint"
+      xmlns="http://www.w3.org/2000/svg"
+      enable-background="new 0 0 24 24"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="#e8eaed"
+    >
+      <rect fill="none" height="24" width="24" />
+      <g>
+        <path
+          d="M6.5,21H3c-0.55,0-1-0.45-1-1V10c0-0.55,0.45-1,1-1h3.5c0.55,0,1,0.45,1,1v10C7.5,20.55,7.05,21,6.5,21z M13.75,3h-3.5 c-0.55,0-1,0.45-1,1v16c0,0.55,0.45,1,1,1h3.5c0.55,0,1-0.45,1-1V4C14.75,3.45,14.3,3,13.75,3z M21,11h-3.5c-0.55,0-1,0.45-1,1v8 c0,0.55,0.45,1,1,1H21c0.55,0,1-0.45,1-1v-8C22,11.45,21.55,11,21,11z"
+        />
+      </g>
+    </svg>
+    <h2 class="modal-title">Please choose a league</h2>
+  </div>
+  <div class="modal-options">
+    <div *ngFor="let league of leagues">
+      <div class="league-option" (click)="onSelectLeague(league.id)">
+        <div class="league-title">{{ league.name }}</div>
+        <div class="flex-between">
+          <div class="league-members">Members: {{ league.rank_count }}</div>
+          <div class="league-members">Position: {{ league.entry_rank }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="large-break"></div>
+  <div class="large-break"></div>
+</div>

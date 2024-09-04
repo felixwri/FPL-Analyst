@@ -1,17 +1,8 @@
-<div *ngIf="displayOptions && teamData" class="display-options">
-  <div class="modal-options">
-    <h2>Please choose a league</h2>
-    <div *ngFor="let league of teamData.leagues">
-      <div class="league-option" (click)="selectLeague(league.id)">
-        <div class="league-title">{{ league.name }}</div>
-        <div class="flex-between">
-          <div class="league-members">Members: {{ league.rank_count }}</div>
-          <div class="league-members">Position: {{ league.entry_rank }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<choose-league
+  [display]="displayOptions"
+  [leagues]="teamData?.leagues"
+  (selectedLeagueId)="leagueSelected($event)"
+></choose-league>
 
 <main id="main">
   <div *ngIf="leagueData" class="table">

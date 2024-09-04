@@ -11,7 +11,7 @@ import { TeamData } from '../../types';
   styleUrl: './league.component.css'
 })
 export class LeagueComponent {
-  leagueId: string | null = null;
+  leagueId: string | number | null = null;
   leagueData: any[any] | null = null;
   teamData: TeamData | null = null;
   displayOptions: boolean = false;
@@ -35,12 +35,19 @@ export class LeagueComponent {
     if (!this.leagueId && this.teamData) {
       // this.getLeagueData(); 
       this.displayOptions = true;
+      console.log(this.displayOptions)
       console.log(this.teamData);
       return;
     } 
 
     this.getLeagueData();
 
+  }
+
+  leagueSelected(event: any) {
+    console.log(event);
+    this.leagueId = event;
+    this.getLeagueData();
   }
 
   getLeagueData(): void {

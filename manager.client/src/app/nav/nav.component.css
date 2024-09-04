@@ -30,6 +30,11 @@
     color: var(--accent-primary);
 }
 
+.site-name {
+    font-weight: bold;
+    color: var(--grey-text-color);
+}
+
 .team-nav-display {
     display: flex;
     justify-content: space-evenly;

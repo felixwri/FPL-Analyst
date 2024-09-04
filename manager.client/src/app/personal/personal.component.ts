@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { TeamData, UpcomingFixtures } from '../../types';
+import { TeamData } from '../../types';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
-import { ServerURL } from '../../global';
 
 @Component({
   selector: 'app-personal',

@@ -8,6 +8,7 @@
 }
 
 :root {
+    --translucent-background: rgba(35, 35, 35, 0.5);
     --light-background: rgb(60, 60, 60);
     --background: rgb(35, 35, 35);
     --darker-background: rgb(20, 20, 20);
@@ -54,6 +55,10 @@ body {
 
 .break {
     height: 1rem;
+}
+
+.large-break {
+    height: 5rem;
 }
 
 .clickable {

@@ -13,6 +13,7 @@ import { PersonalComponent } from './personal/personal.component';
 import { FixturesComponent } from './personal/fixtures/fixtures.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { FooterComponent } from './footer/footer.component';
+import { ChooseLeagueComponent } from './league/choose-league/choose-league.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { FooterComponent } from './footer/footer.component';
         FormsModule,
         SearchIdComponent,
         FixturesComponent,
-        FooterComponent
+        FooterComponent,
+        ChooseLeagueComponent
     ], providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())]
 })
 export class AppModule { }

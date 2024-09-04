@@ -34,7 +34,6 @@ export class FixturesComponent {
     });
   }
 
-
   ngAfterViewInit() {
     let colors = getColors();
     this.least.nativeElement.style.color = colors['primary'];
@@ -85,10 +84,15 @@ export class FixturesComponent {
       }
 
 
-      difficultySums[i] = Math.abs(leastDifficult) + difficultySums[i] + 100;
-      if (difficultySums[i] > max) {
-        max = difficultySums[i]
+      difficultySums[i] = Math.round((difficultySums[i] - leastDifficult) / (mostDifficult - leastDifficult) * 100);
+      if (difficultySums[i] == 0) {
+        difficultySums[i] = 5;
       }
+
+      // difficultySums[i] = Math.abs(leastDifficult) + difficultySums[i] + 100;
+      // if (difficultySums[i] > max) {
+      //   max = difficultySums[i]
+      // }
     }
 
     this.chart.setLabels(labels);
@@ -129,6 +133,8 @@ class ChartHandler {
             }
         },
         x: {
+          max: 100,
+          min: 0,
           ticks: {
             display: false
           }
