@@ -12,6 +12,7 @@ import { SearchIdComponent } from './components/search-id/search-id.component';
 import { PersonalComponent } from './personal/personal.component';
 import { FixturesComponent } from './personal/fixtures/fixtures.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
         NavComponent,
         FormsModule,
         SearchIdComponent,
-        FixturesComponent
+        FixturesComponent,
+        FooterComponent
     ], providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())]
 })
 export class AppModule { }

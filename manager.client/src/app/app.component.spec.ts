@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,7 +14,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
     declarations: [AppComponent],
-    imports: [NavComponent, RouterOutlet],
+    imports: [NavComponent, RouterOutlet, FooterComponent],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 }).compileComponents();
   });
