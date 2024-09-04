@@ -63,4 +63,7 @@ export class SearchIdComponent {
   goToPersonal() {
     this.router.navigate([`/personal/${this.teamID}`]);
   }
+  goToLeague(id: number) {
+    this.router.navigate([`/league/${id}`]);
+  }
 }

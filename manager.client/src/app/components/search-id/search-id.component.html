@@ -6,21 +6,54 @@
 <div *ngIf="teamID" class="search-results">
   <div class="profile" (click)="goToPersonal()">
     <div class="flex-between">
-      <h3>{{ teamData.name }}</h3>
-      <p>{{ teamData.id }}</p>
+      <div class="profile-left">
+        <svg
+          class="icon-hint"
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          fill="#e8eaed"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4z"
+          />
+        </svg>
+        <h3>{{ teamData.name }}</h3>
+      </div>
+      <p class="grey">{{ teamData.id }}</p>
     </div>
   </div>
+
   <div class="break"></div>
+
   <div class="leagues">
-    <div class="flex-between league-title">
-      <h3>Invitational Leagues</h3>
-    </div>
     <ul class="league-list">
       <li *ngIf="teamData.leagues.length === 0" class="league-item list flex-between">
         <div class="link">None available</div>
       </li>
-      <li *ngFor="let league of teamData.leagues" class="league-item list">
-        <a class="link league-name" href="/league/{{ league.id }}">{{ league.name }}</a>
+
+      <li *ngFor="let league of teamData.leagues" class="league-item list" (click)="goToLeague(league.id)">
+        <div class="profile-left">
+          <svg
+            class="icon-hint"
+            xmlns="http://www.w3.org/2000/svg"
+            enable-background="new 0 0 24 24"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#e8eaed"
+          >
+            <rect fill="none" height="24" width="24" />
+            <g>
+              <path
+                d="M6.5,21H3c-0.55,0-1-0.45-1-1V10c0-0.55,0.45-1,1-1h3.5c0.55,0,1,0.45,1,1v10C7.5,20.55,7.05,21,6.5,21z M13.75,3h-3.5 c-0.55,0-1,0.45-1,1v16c0,0.55,0.45,1,1,1h3.5c0.55,0,1-0.45,1-1V4C14.75,3.45,14.3,3,13.75,3z M21,11h-3.5c-0.55,0-1,0.45-1,1v8 c0,0.55,0.45,1,1,1H21c0.55,0,1-0.45,1-1v-8C22,11.45,21.55,11,21,11z"
+              />
+            </g>
+          </svg>
+          <h3 class="link league-name">{{ league.name }}</h3>
+        </div>
         <div class="league-stats">
           <span>Position: {{ league.entry_rank }}</span>
           <span>Players: {{ league.rank_count }}</span>

@@ -19,8 +19,7 @@
     font-size: 1.2rem;
 }
 
-
-main {
+#main {
     padding: 2rem;
 }
 
@@ -52,7 +51,7 @@ main {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    margin: 0.5rem 0rem;
+    /* margin: 0.5rem 0rem; */
     padding: 0.5rem;
 }
 
@@ -81,9 +80,22 @@ main {
     align-items: center;
 }
 
-@media screen and (max-width: 500px) {
-    main {
-        padding: 0.5rem;
+.placeholder {
+    background-color: var(--darker-background);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+    #main {
+        grid-template-columns: 1fr;
     }
 
     .table {

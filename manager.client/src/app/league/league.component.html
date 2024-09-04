@@ -12,7 +12,8 @@
     </div>
   </div>
 </div>
-<main>
+
+<main id="main">
   <div *ngIf="leagueData" class="table">
     <h2 class="table-title">Current Stangings</h2>
     <ul *ngFor="let league of leagueData.standings.results">
@@ -33,4 +34,7 @@
       </li>
     </ul>
   </div>
+  <div class="placeholder">Placeholder</div>
+  <div class="placeholder">Placeholder</div>
+  <div class="placeholder">Placeholder</div>
 </main>

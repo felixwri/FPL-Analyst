@@ -8,6 +8,7 @@
 }
 
 :root {
+    --light-background: rgb(60, 60, 60);
     --background: rgb(35, 35, 35);
     --darker-background: rgb(20, 20, 20);
     --black: rgb(5, 5, 5);
@@ -22,6 +23,7 @@
     --negative: rgb(255, 97, 123);
 
     --border-radius: 5px;
+    --border-radius-round: 30px;
 
     --nav-height: 4rem;
 
@@ -38,6 +40,7 @@ body {
 .flex-between {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .link {
@@ -55,4 +58,8 @@ body {
 
 .clickable {
     cursor: pointer;
+}
+
+.grey {
+    color: var(--grey-text-color);
 }
