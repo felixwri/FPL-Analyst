@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ServerURL } from '../../../global';
+import { getColors, ServerURL } from '../../../global';
 import { UpcomingFixtures } from '../../../types';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData } from 'chart.js';
@@ -17,6 +17,8 @@ export class FixturesComponent {
   public upcomingFixtures: UpcomingFixtures[] = [];
   public chart: ChartHandler = new ChartHandler();
 
+  @ViewChild('least') least!: ElementRef;
+  @ViewChild('most') most!: ElementRef;
 
   constructor(private apiService: ApiService) {
     this.getFixtures();
@@ -33,13 +35,30 @@ export class FixturesComponent {
   }
 
 
-  processFixtures() {
-    
+  ngAfterViewInit() {
+    let colors = getColors();
+    this.least.nativeElement.style.color = colors['primary'];
+    this.most.nativeElement.style.color = colors['grey'];
+ }
 
+  /**
+   * Generates the data for the chart
+   */
+  processFixtures() {
     let labels: string[] = [];
     let difficultySums: number[] = [];
 
-    let mostDifficult = Infinity;
+    let { primary, grey } = getColors();
+
+    let colors: string[] = [
+      primary,
+      grey,
+    ]
+
+    let backgroundColors: string[] = [];
+
+    let leastDifficult = Infinity;
+    let mostDifficult = -Infinity;
     let max = 0;
 
     for (let fixtures of this.upcomingFixtures) {
@@ -48,22 +67,32 @@ export class FixturesComponent {
       for (let fixture of fixtures.Fixtures) {
         sum += fixture.RelativeDifficulty;
       }
-      if (sum < mostDifficult) {
+      if (sum < leastDifficult) {
+        leastDifficult = sum;
+      }
+      if (sum > mostDifficult) {
         mostDifficult = sum;
       }
       difficultySums.push(sum);
     }
 
     for (let i = 0; i < difficultySums.length; i++) {
-      difficultySums[i] = Math.abs(mostDifficult) + difficultySums[i] + 100;
+
+      if (difficultySums[i] < 0) {
+        backgroundColors.push(colors[0]);
+      } else if (difficultySums[i] > 0) {
+        backgroundColors.push(colors[1]);
+      }
+
+
+      difficultySums[i] = Math.abs(leastDifficult) + difficultySums[i] + 100;
       if (difficultySums[i] > max) {
         max = difficultySums[i]
       }
     }
 
     this.chart.setLabels(labels);
-    this.chart.addDataset('Difficulty', difficultySums);
-    console.log(max);
+    this.chart.addDataset({label: "Difficulty", data: difficultySums, borderRadius: 10, backgroundColor: backgroundColors});
     this.chart.hasData = true;
   }
 }
@@ -94,8 +123,9 @@ class ChartHandler {
       },
       scales: {
         y: {
-            ticks: {
-                autoSkip: false
+          ticks: {
+              color: 'white',
+              autoSkip: false
             }
         },
         x: {
@@ -105,7 +135,8 @@ class ChartHandler {
         }
       },
       layout: {
-        padding: 10
+        // padding: 10,
+        autoPadding: true,
       },
       responsive: true,
       maintainAspectRatio: false,
@@ -122,8 +153,8 @@ class ChartHandler {
     this.data.labels = labels;
   }
 
-  addDataset(label: string, dataset: number[]) { 
-    let newDataset: ChartData<'bar'>['datasets'][0] = { label, data: dataset };
+  addDataset(dataset: ChartData<'bar'>['datasets'][0]) { 
+    let newDataset: ChartData<'bar'>['datasets'][0] = dataset;
     this.data.datasets.push(newDataset);
 
     console.log(this.data);

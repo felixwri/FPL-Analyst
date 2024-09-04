@@ -18,6 +18,9 @@
     --accent-primary: rgb(212, 138, 255);
     --accent-secondary: rgb(94, 96, 192);
 
+    --positive: rgb(22, 189, 255);
+    --negative: rgb(255, 97, 123);
+
     --border-radius: 5px;
 
     --nav-height: 4rem;

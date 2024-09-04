@@ -57,4 +57,35 @@
     background-color: var(--darker-background);
     padding: 1rem;
     border-radius: var(--border-radius);
+    max-width: 50vw;
+}
+
+.chart-title {
+    border-bottom: 2px solid grey;
+    padding-bottom: 0.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-container {
+    height: calc(100% - 1.5rem);
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.chart-legend>svg {
+    width: 1rem;
+    margin: 0 0.2rem;
+}
+
+@media screen and (max-width: 700px) {
+    .fixtures-chart {
+        max-width: 100%
+    }
 }

@@ -1,0 +1,18 @@
+.placeholder {
+    background-color: var(--darker-background);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+    #main {
+        grid-template-columns: 1fr;
+    }
+}

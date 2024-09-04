@@ -1,8 +1,27 @@
 <section>
   <div class="fixtures-chart">
-    <div>Fixture Difficulty</div>
-    <canvas class="chart" *ngIf="chart.hasData" baseChart [data]="chart.data" [options]="chart.options" [type]="'bar'">
-    </canvas>
+    <div class="chart-title">
+      <div>Next 5 Fixtures Difficulty</div>
+      <div class="chart-legend">
+        <div #least>Least</div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+          <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+        </svg>
+        <div #most style="margin-right: 0.5rem">Most</div>
+        <div>Difficult</div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas
+        class="chart"
+        *ngIf="chart.hasData"
+        baseChart
+        [data]="chart.data"
+        [options]="chart.options"
+        [type]="'bar'"
+      >
+      </canvas>
+    </div>
   </div>
   <!-- <div *ngIf="upcomingFixtures" class="fixture-component">
     <div *ngFor="let fixtures of upcomingFixtures" class="fixture-entry">
