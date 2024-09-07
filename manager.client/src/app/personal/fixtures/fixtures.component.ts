@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { getColors, ServerURL } from '../../../global';
+import { getColors } from '../../../global';
+import { ServerURL } from '../../../env/environment';
 import { UpcomingFixtures } from '../../../types';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData } from 'chart.js';

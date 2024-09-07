@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { TeamData } from '../../../types';
-import { ServerURL } from '../../../global';
+import { ServerURL } from '../../../env/environment';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { DataLoaderService } from '../../services/data-loader.service';

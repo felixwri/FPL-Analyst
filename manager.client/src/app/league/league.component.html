@@ -5,26 +5,13 @@
 ></choose-league>
 
 <main id="main">
-  <div *ngIf="leagueData" class="table">
-    <h2 class="table-title">Current Stangings</h2>
-    <ul *ngFor="let league of leagueData.standings.results">
-      <li class="table-entry">
-        <div class="table-entry-left">
-          <div>
-            <div class="table-team-position">{{ league.rank }}</div>
-          </div>
-          <div>
-            <div class="table-team-name">{{ league.entry_name }}</div>
-            <div class="table-player-name">{{ league.player_name }}</div>
-          </div>
-        </div>
-        <div>
-          <div class="table-week-points">{{ league.event_total }}</div>
-          <div class="table-total-points">{{ league.total }}</div>
-        </div>
-      </li>
-    </ul>
-  </div>
+  @if (leagueData) {
+  <div class="title placeholder">{{ leagueData.league.name }}</div>
+  } @else {
+  <div class="placeholder">No League Selected</div>
+  }
+  <div></div>
+  <standings id="standings" class="content" [leagueData]="leagueData"></standings>
   <div class="placeholder">Placeholder</div>
   <div class="placeholder">Placeholder</div>
   <div class="placeholder">Placeholder</div>

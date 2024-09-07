@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
-import { ServerURL } from '../../global';
+import { ServerURL } from '../../env/environment';
 import { StorageService } from '../services/storage.service';
 import { TeamData } from '../../types';
 

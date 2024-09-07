@@ -13,12 +13,7 @@ export class ChooseLeagueComponent {
   @Input() leagues: any[any] = [];
 
   @Output() selectedLeagueId = new EventEmitter<number>();
-
-  ngOnInit() { 
-    console.log("Child " + this.display);
-    console.log(this.leagues);
-  }
-
+  
   onSelectLeague(leagueId: number) { 
     this.selectedLeagueId.emit(leagueId);
     this.display = false;

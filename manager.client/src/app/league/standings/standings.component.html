@@ -1,0 +1,24 @@
+<section>
+  <div *ngIf="leagueData" class="table">
+    <h2 class="table-title">Current Standings</h2>
+    @for (league of leagueData.standings.results; track league) {
+    <ul>
+      <li class="table-entry">
+        <div class="table-entry-left">
+          <div>
+            <div class="table-team-position">{{ league.rank }}</div>
+          </div>
+          <div>
+            <div class="table-team-name">{{ league.entry_name }}</div>
+            <div class="table-player-name">{{ league.player_name }}</div>
+          </div>
+        </div>
+        <div class="table-right">
+          <div class="table-week-points">{{ league.event_total }}</div>
+          <div class="table-total-points">{{ league.total }}</div>
+        </div>
+      </li>
+    </ul>
+    }
+  </div>
+</section>

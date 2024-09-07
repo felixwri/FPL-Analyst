@@ -2,50 +2,11 @@
     padding: 2rem;
 }
 
-.table {
-    max-width: 50vw;
-    margin: 0rem;
-    padding: 1rem;
+.content {
     background-color: var(--darker-background);
     border-radius: var(--border-radius);
 }
 
-.table-title {
-    padding-bottom: 1rem;
-}
-
-.table-entry {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    /* margin: 0.5rem 0rem; */
-    padding: 0.5rem;
-}
-
-.table-player-name {
-    color: var(--grey-text-color);
-}
-
-.table-entry-left {
-    display: flex;
-    align-items: center;
-}
-
-.table-team-position {
-    margin-right: 1rem;
-    /* border: 2px solid var(--text-color); */
-    background-color: var(--text-color);
-    color: var(--darker-background);
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 0.5rem;
-    width: 2rem;
-    height: 2rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .placeholder {
     background-color: var(--darker-background);
@@ -60,13 +21,20 @@
     padding: 1rem;
 }
 
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    #main {
+        grid-template-columns: 1fr 0.5fr;
+    }
+}
+
 @media screen and (max-width: 700px) {
     #main {
         grid-template-columns: 1fr;
-    }
-
-    .table {
-        max-width: 100%;
     }
 
     .modal-options {

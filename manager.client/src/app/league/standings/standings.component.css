@@ -1,0 +1,54 @@
+.table {
+    margin: 0rem;
+    padding: 1rem;
+    background-color: var(--darker-background);
+    border-radius: var(--border-radius);
+}
+
+.table-title {
+    padding-bottom: 1rem;
+}
+
+.table-entry {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    /* margin: 0.5rem 0rem; */
+    padding: 0.5rem;
+}
+
+.table-player-name {
+    color: var(--grey-text-color);
+}
+
+.table-entry-left {
+    display: flex;
+    align-items: center;
+}
+
+.table-team-position {
+    margin-right: 1rem;
+    /* border: 2px solid var(--text-color); */
+    background-color: var(--text-color);
+    color: var(--darker-background);
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.table-total-points {
+    font-weight: bold;
+}
