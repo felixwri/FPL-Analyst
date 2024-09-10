@@ -1,4 +1,4 @@
-using Manager.Server;
+using Manager.Server.Source;
 
 var builder = WebApplication.CreateBuilder(args);
 var AllowSpecificOrigins = "_AllowSpecificOrigins";

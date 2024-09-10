@@ -1,3 +1,4 @@
+using Manager.Server.Source;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.Server.Controllers
@@ -8,7 +9,7 @@ namespace Manager.Server.Controllers
     }
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TeamController : ControllerBase
     {
         private static async Task<string> GetTeamData(string teamID)

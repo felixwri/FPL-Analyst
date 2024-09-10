@@ -1,9 +1,10 @@
+using Manager.Server.Source;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LeagueController : ControllerBase
     {
         private static async Task<string> GetLeagueData(string leagueId)

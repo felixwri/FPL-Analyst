@@ -1,4 +1,4 @@
-namespace Manager.Server
+namespace Manager.Server.Source
 {
     public class Fetch
     {

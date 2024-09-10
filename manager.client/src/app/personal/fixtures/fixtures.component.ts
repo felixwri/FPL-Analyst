@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [BaseChartDirective, CommonModule],
   templateUrl: './fixtures.component.html',
-  styleUrl: './fixtures.component.css'
+  styleUrl: './fixtures.component.css',
 })
 export class FixturesComponent {
   public upcomingFixtures: UpcomingFixtures[] = [];
@@ -39,7 +39,7 @@ export class FixturesComponent {
     let colors = getColors();
     this.least.nativeElement.style.color = colors['primary'];
     this.most.nativeElement.style.color = colors['grey'];
- }
+  }
 
   /**
    * Generates the data for the chart
@@ -50,10 +50,7 @@ export class FixturesComponent {
 
     let { primary, grey } = getColors();
 
-    let colors: string[] = [
-      primary,
-      grey,
-    ]
+    let colors: string[] = [primary, grey];
 
     let backgroundColors: string[] = [];
 
@@ -77,15 +74,13 @@ export class FixturesComponent {
     }
 
     for (let i = 0; i < difficultySums.length; i++) {
-
       if (difficultySums[i] < 0) {
         backgroundColors.push(colors[0]);
       } else if (difficultySums[i] > 0) {
         backgroundColors.push(colors[1]);
       }
 
-
-      difficultySums[i] = Math.round((difficultySums[i] - leastDifficult) / (mostDifficult - leastDifficult) * 100);
+      difficultySums[i] = Math.round(((difficultySums[i] - leastDifficult) / (mostDifficult - leastDifficult)) * 100);
       if (difficultySums[i] == 0) {
         difficultySums[i] = 5;
       }
@@ -97,7 +92,12 @@ export class FixturesComponent {
     }
 
     this.chart.setLabels(labels);
-    this.chart.addDataset({label: "Difficulty", data: difficultySums, borderRadius: 10, backgroundColor: backgroundColors});
+    this.chart.addDataset({
+      label: 'Difficulty',
+      data: difficultySums,
+      borderRadius: 10,
+      backgroundColor: backgroundColors,
+    });
     this.chart.hasData = true;
   }
 }
@@ -111,7 +111,7 @@ class ChartHandler {
     this.data = {
       labels: [],
       datasets: [],
-    }
+    };
     let delayed = false;
     this.options = {
       animation: {
@@ -121,7 +121,7 @@ class ChartHandler {
         delay: (context) => {
           let delay = 0;
           if (context.type === 'data' && context.mode === 'default' && !delayed) {
-            delay = context.dataIndex * 100
+            delay = context.dataIndex * 100;
           }
           return delay;
         },
@@ -129,17 +129,17 @@ class ChartHandler {
       scales: {
         y: {
           ticks: {
-              color: 'white',
-              autoSkip: false
-            }
+            color: 'white',
+            autoSkip: false,
+          },
         },
         x: {
           max: 100,
           min: 0,
           ticks: {
-            display: false
-          }
-        }
+            display: false,
+          },
+        },
       },
       layout: {
         // padding: 10,
@@ -153,21 +153,21 @@ class ChartHandler {
           display: false,
         },
       },
-    }
+    };
   }
 
-  setLabels(labels: string[]) { 
+  setLabels(labels: string[]) {
     this.data.labels = labels;
   }
 
-  addDataset(dataset: ChartData<'bar'>['datasets'][0]) { 
+  addDataset(dataset: ChartData<'bar'>['datasets'][0]) {
     let newDataset: ChartData<'bar'>['datasets'][0] = dataset;
     this.data.datasets.push(newDataset);
 
     console.log(this.data);
   }
 
-  setData(data: ChartData<'bar'>) { 
+  setData(data: ChartData<'bar'>) {
     this.data = data;
   }
 

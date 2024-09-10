@@ -1,4 +1,5 @@
-<div *ngIf="display" class="display-options">
+@if (display) {
+<div class="display-options">
   <div class="modal-outer">
     <svg
       class="icon-hint"
@@ -19,7 +20,8 @@
     <h2 class="modal-title">Please choose a league</h2>
   </div>
   <div class="modal-options">
-    <div *ngFor="let league of leagues">
+    @for (league of leagues; track $index) {
+    <div>
       <div class="league-option" (click)="onSelectLeague(league.id)">
         <div class="league-title">{{ league.name }}</div>
         <div class="flex-between">
@@ -28,7 +30,9 @@
         </div>
       </div>
     </div>
+    }
   </div>
   <div class="large-break"></div>
   <div class="large-break"></div>
 </div>
+}

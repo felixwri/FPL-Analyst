@@ -1,1 +1,1 @@
-export const ServerURL = window.location.origin;
+export const ServerURL = window.location.origin + '/api';
