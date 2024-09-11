@@ -13,15 +13,14 @@ import { Route, Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './search-id.component.html',
-  styleUrl: './search-id.component.css'
+  styleUrl: './search-id.component.css',
 })
 export class SearchIdComponent {
-  
-  teamID: string = "";
+  teamID: string = '';
   teamData: TeamData = {
     id: 0,
-    name: "",
-    managerName: "",
+    name: '',
+    managerName: '',
     points: 0,
     dateJoined: new Date(),
     leagues: [],
@@ -31,9 +30,8 @@ export class SearchIdComponent {
     private apiService: ApiService,
     private dataLoader: DataLoaderService,
     private storageService: StorageService,
-    private router: Router
-  ) { }
-
+    private router: Router,
+  ) {}
 
   onSubmit(value: string) {
     this.onSearch(value);
@@ -43,7 +41,7 @@ export class SearchIdComponent {
     this.teamID = value;
     console.log(this.teamID);
 
-    this.apiService.post(`${ServerURL}/team`, {teamID: this.teamID}).subscribe((res) => { 
+    this.apiService.get(`${ServerURL}/team/${this.teamID}`).subscribe((res) => {
       console.log(res);
       if (res) {
         this.teamData.id = res.id;
@@ -51,12 +49,12 @@ export class SearchIdComponent {
         this.teamData.managerName = res.player_first_name;
         this.teamData.points = res.summary_overall_points;
         this.teamData.dateJoined = new Date(res.joined_time);
-        this.teamData.leagues = res.leagues.classic.filter((league: any) => league.league_type == "x");
+        this.teamData.leagues = res.leagues.classic.filter((league: any) => league.league_type == 'x');
         this.dataLoader.setTeamData(this.teamData);
 
         this.storageService.setTeamData(this.teamData);
       }
-      console.log(this.teamData)
+      console.log(this.teamData);
     });
   }
 

@@ -13,6 +13,7 @@ import { TeamData } from '../../types';
 export class LeagueComponent {
   leagueId: string | number | null = null;
   leagueData: any[any] | null = null;
+  leagueHistory: any[any] | null = null;
   teamData: TeamData | null = null;
   displayOptions: boolean = false;
 
@@ -34,6 +35,13 @@ export class LeagueComponent {
 
     if (!this.leagueId && this.teamData) {
       // this.getLeagueData();
+
+      if (this.teamData.leagues.length === 1) {
+        this.leagueId = this.teamData.leagues[0].id;
+        this.leagueSelected(this.leagueId);
+        return;
+      }
+
       this.displayOptions = true;
       console.log(this.displayOptions);
       console.log(this.teamData);
@@ -64,11 +72,14 @@ export class LeagueComponent {
   }
 
   getLeagueHistory(leagueId: string) {
-    this.apiservice.post(`${ServerURL}/leagueHistory`, { leagueId: leagueId }).subscribe((res) => {
-      console.log(res);
-      for (let r of res) {
-        console.log(JSON.parse(r));
-      }
+    this.apiservice.get(`${ServerURL}/league/${leagueId}/history`).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.leagueHistory = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 
