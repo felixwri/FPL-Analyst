@@ -1,6 +1,12 @@
 @if (league) {
 <div class="point-graph">
   <h2>Weekly Points</h2>
+  <div class="buttons">
+    <button class="g-button" (click)="historyChart('rank')">Rank</button>
+    <button class="g-button" (click)="historyChart('points')">Points</button>
+    <button class="g-button" (click)="historyChart('pointsBench')">Points On The Bench</button>
+    <button class="g-button" (click)="historyChart('pointsTotal')">Total Points</button>
+  </div>
   <div class="chart-container">
     @if (chart.hasData) {
     <canvas class="chart" baseChart [data]="chart.data" [options]="chart.options" [type]="'line'"> </canvas>

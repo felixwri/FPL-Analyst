@@ -8,34 +8,32 @@ export interface TeamData {
 }
 
 export interface UpcomingFixtures {
-  Id: number;
-  Team: string;
-  TeamHomeDifficulty: number;
-  TeamAwayDifficulty: number;
-  Fixtures: [
+  id: number;
+  team: string;
+  teamHomeDifficulty: number;
+  teamAwayDifficulty: number;
+  fixtures: [
     {
-      Id: number;
-      AtHome: boolean;
-      Opponent: string;
-      RelativeDifficulty: number;
-      OpponentDifficulty: number;
-      Kickoff: Date;
+      id: number;
+      atHome: boolean;
+      opponent: string;
+      relativeDifficulty: number;
+      opponentDifficulty: number;
+      kickoff: Date;
     },
   ];
 }
 
-export interface leagueHistory {
+export interface League {
   leagueId: number;
   leagueName: string;
-  gameWeeks: [
-    {
-      gameWeek: number;
-      scores: [
-        {
-          points: number;
-          pointsOnBench: number;
-        },
-      ];
-    },
-  ];
+  history: LeagueHistory[];
+}
+
+export interface LeagueHistory {
+  id: number;
+  name: string;
+  points: number[];
+  points_on_bench: number[];
+  total_points: number[];
 }

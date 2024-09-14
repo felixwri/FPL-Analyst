@@ -1,6 +1,6 @@
 main {
     height: calc(100vh - 4rem);
-    background: linear-gradient(30deg, black, var(--background) 70%);
+    background: linear-gradient(30deg, var(--black), var(--background) 70%);
 }
 
 .graphic {

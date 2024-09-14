@@ -17,10 +17,10 @@ namespace Manager.Server.Controllers
             return await Fetch.Get(Resources.TeamData(teamID));
         }
 
-        [HttpPost(Name = "PostTeam")]
-        public async Task<string> Post([FromBody] FPLRequest request)
+        [HttpGet("{teamId}")]
+        public async Task<string> Post([FromRoute] string teamId)
         {
-            return await GetTeamData(request.TeamId);
+            return await GetTeamData(teamId);
         }
     }
 }

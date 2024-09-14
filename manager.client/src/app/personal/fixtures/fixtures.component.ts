@@ -26,8 +26,7 @@ export class FixturesComponent {
   }
 
   getFixtures() {
-    this.apiService.get(`${ServerURL}/fixture`).subscribe((data: any) => {
-      console.log(data);
+    this.apiService.getFixtures().subscribe((data) => {
       if (data) {
         this.upcomingFixtures = data;
         this.processFixtures();
@@ -59,10 +58,10 @@ export class FixturesComponent {
     let max = 0;
 
     for (let fixtures of this.upcomingFixtures) {
-      labels.push(fixtures.Team);
+      labels.push(fixtures.team);
       let sum = 0;
-      for (let fixture of fixtures.Fixtures) {
-        sum += fixture.RelativeDifficulty;
+      for (let fixture of fixtures.fixtures) {
+        sum += fixture.relativeDifficulty;
       }
       if (sum < leastDifficult) {
         leastDifficult = sum;
@@ -73,22 +72,19 @@ export class FixturesComponent {
       difficultySums.push(sum);
     }
 
+    let middleDifficult = (mostDifficult + leastDifficult) / 2;
+
     for (let i = 0; i < difficultySums.length; i++) {
-      if (difficultySums[i] < 0) {
+      if (difficultySums[i] < middleDifficult) {
         backgroundColors.push(colors[0]);
-      } else if (difficultySums[i] > 0) {
+      } else if (difficultySums[i] > middleDifficult) {
         backgroundColors.push(colors[1]);
       }
 
       difficultySums[i] = Math.round(((difficultySums[i] - leastDifficult) / (mostDifficult - leastDifficult)) * 100);
-      if (difficultySums[i] == 0) {
+      if (difficultySums[i] <= 5) {
         difficultySums[i] = 5;
       }
-
-      // difficultySums[i] = Math.abs(leastDifficult) + difficultySums[i] + 100;
-      // if (difficultySums[i] > max) {
-      //   max = difficultySums[i]
-      // }
     }
 
     this.chart.setLabels(labels);

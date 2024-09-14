@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ServerURL } from '../../env/environment';
 import { StorageService } from '../services/storage.service';
-import { TeamData } from '../../types';
+import { LeagueHistory, TeamData } from '../../types';
 
 @Component({
   selector: 'app-league',
@@ -13,7 +13,7 @@ import { TeamData } from '../../types';
 export class LeagueComponent {
   leagueId: string | number | null = null;
   leagueData: any[any] | null = null;
-  leagueHistory: any[any] | null = null;
+  leagueHistory: LeagueHistory[] | null = null;
   teamData: TeamData | null = null;
   displayOptions: boolean = false;
 
@@ -48,7 +48,10 @@ export class LeagueComponent {
       return;
     }
 
-    this.getLeagueData();
+    if (this.leagueId !== null) {
+      this.getLeagueData();
+      this.getLeagueHistory(this.leagueId);
+    }
   }
 
   leagueSelected(event: any) {
@@ -63,6 +66,7 @@ export class LeagueComponent {
   getLeagueData(): void {
     this.apiservice.get(`${ServerURL}/league/${this.leagueId}`).subscribe({
       next: (res) => {
+        console.log(res);
         this.leagueData = res;
       },
       error: (err) => {
@@ -72,7 +76,7 @@ export class LeagueComponent {
   }
 
   getLeagueHistory(leagueId: string) {
-    this.apiservice.get(`${ServerURL}/league/${leagueId}/history`).subscribe({
+    this.apiservice.getLeagueHistory(leagueId).subscribe({
       next: (res) => {
         console.log(res);
         this.leagueHistory = res;

@@ -1,10 +1,8 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: rgb(255, 230, 0);
+    background-color: var(--black);
+    color: var(--warning);
     text-align: center;
     padding: 10px;
+    height: 5rem;
+    margin-top: 2rem;
 }

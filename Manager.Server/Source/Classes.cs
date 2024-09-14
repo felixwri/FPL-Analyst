@@ -1,5 +1,18 @@
+using System.Text.Json;
+
 namespace Manager.Server.Source
 {
+    public class JsonOptionsProvider
+    {
+        public static JsonSerializerOptions Options { get; } = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true,
+        };
+    }
+
+
+
     public class TeamData
     {
         public int Code { get; set; }
@@ -38,6 +51,20 @@ namespace Manager.Server.Source
         public override string ToString()
         {
             return $"Id: {Id}, Name: {FirstName} {SecondName}";
+        }
+    }
+
+    public class TeamHistory(string Id, string Name)
+    {
+        public string Id { get; set; } = Id;
+        public string Name { get; set; } = Name;
+        public List<int> Points { get; set; } = [];
+        public List<int> Total_points { get; set; } = [];
+        public List<int> Points_on_bench { get; set; } = [];
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name}";
         }
     }
 

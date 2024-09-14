@@ -56,7 +56,7 @@ namespace Manager.Server.Source
                             futureFixture.AtHome = true;
                             futureFixture.Opponent = awayTeam.Name;
 
-                            int difficulty = awayTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyHome;
+                            int difficulty = awayTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyHome / 4;
 
                             futureFixture.RelativeDifficulty = difficulty;
                             futureFixture.OpponentDifficulty = awayTeam.Strength_Overall_Away;
@@ -80,7 +80,7 @@ namespace Manager.Server.Source
                             futureFixture.AtHome = false;
                             futureFixture.Opponent = homeTeam.Name;
 
-                            int difficulty = homeTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyAway;
+                            int difficulty = homeTeam.Strength_Overall_Away - upcomingFixtures.TeamDifficultyAway / 4;
 
                             futureFixture.RelativeDifficulty = difficulty;
                             futureFixture.OpponentDifficulty = homeTeam.Strength_Overall_Away;

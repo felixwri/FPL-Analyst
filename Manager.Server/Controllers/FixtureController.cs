@@ -12,7 +12,7 @@ namespace Manager.Server.Controllers
 
         private string GetUpcomingFixtures()
         {
-            string result = JsonSerializer.Serialize(cache.AllUpcomingFixtures);
+            string result = JsonSerializer.Serialize(cache.AllUpcomingFixtures, JsonOptionsProvider.Options);
             return result;
         }
 

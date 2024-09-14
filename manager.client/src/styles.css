@@ -23,6 +23,8 @@
     --positive: rgb(22, 189, 255);
     --negative: rgb(255, 97, 123);
 
+    --warning: rgb(255, 255, 0);
+
     --border-radius: 5px;
     --border-radius-round: 30px;
 
@@ -32,6 +34,43 @@
     background-color: var(--background);
     color: var(--text-color);
     font-family: "Noto Sans", sans-serif;
+
+    /* Custom scrollbar styles */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--background);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--darker-background);
+        border-radius: var(--border-radius);
+        border: 2px solid var(--background);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--accent-secondary);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --translucent-background: rgba(255, 255, 255, 0.5);
+        --light-background: rgb(175, 175, 175);
+        --background: rgb(172, 172, 172);
+        --darker-background: rgb(255, 255, 255);
+        --black: rgb(255, 255, 255);
+
+        --text-color: rgb(0, 0, 0);
+        --grey-text-color: rgb(63, 63, 63);
+
+        --accent-primary: rgb(181, 52, 255);
+        --accent-secondary: rgb(94, 96, 192);
+
+        --warning: rgb(255, 136, 0);
+    }
 }
 
 body {
