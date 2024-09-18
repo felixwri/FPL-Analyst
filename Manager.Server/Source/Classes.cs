@@ -11,7 +11,12 @@ namespace Manager.Server.Source
         };
     }
 
-
+    public class Static
+    {
+        int CurrentGameWeek { get; set; } = 0;
+        int NextGameWeek { get; set; } = 0;
+        int PreviousGameWeek { get; set; } = 0;
+    }
 
     public class TeamData
     {
