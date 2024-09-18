@@ -12,7 +12,6 @@ namespace Manager.Server.Source
         {
             Console.WriteLine("Pre-Processing");
             Load();
-            ProcessFixtures();
         }
 
         private async void Load()
@@ -21,6 +20,7 @@ namespace Manager.Server.Source
             Teams = await prefetch.GetTeamAssignment();
             Fixtures = await prefetch.GetFixtures();
             Players = await prefetch.GetPlayerAssignment();
+            ProcessFixtures();
         }
 
         /// <summary>
