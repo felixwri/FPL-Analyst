@@ -4,6 +4,8 @@ import { LeagueComponent } from './league.component';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { ChooseLeagueComponent } from './choose-league/choose-league.component';
+import { StandingsComponent } from './standings/standings.component';
+import { HistoryComponent } from './history/history.component';
 
 describe('LeagueComponent', () => {
   let component: LeagueComponent;
@@ -12,11 +14,10 @@ describe('LeagueComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LeagueComponent],
-      imports: [ChooseLeagueComponent],
+      imports: [ChooseLeagueComponent, StandingsComponent, HistoryComponent],
       providers: [provideRouter([]), provideHttpClient()],
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(LeagueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
