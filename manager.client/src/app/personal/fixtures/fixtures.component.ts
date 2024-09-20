@@ -126,6 +126,9 @@ class ChartHandler {
         y: {
           ticks: {
             color: 'white',
+            font: {
+              weight: 'bold',
+            },
             autoSkip: false,
           },
         },

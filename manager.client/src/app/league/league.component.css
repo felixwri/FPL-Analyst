@@ -1,8 +1,9 @@
 .content {
     background-color: var(--darker-background);
     border-radius: var(--border-radius);
-}
 
+    border: 2px solid var(--accent-primary);
+}
 
 .placeholder {
     background-color: var(--darker-background);
@@ -10,28 +11,74 @@
     padding: 1rem;
 }
 
-#main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    padding: 1rem;
+main {
+    padding: 2rem 20vw;
+}
+
+#row-1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0rem;
+}
+
+#standings {
+    margin-right: 1rem;
+    flex-grow: 1;
+}
+
+#row-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#history {
+    margin-right: 1rem;
 }
 
 .title {
     font-size: 1.5rem;
     font-weight: bold;
+    color: var(--black);
+
+    width: 50%;
+
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+}
+
+@media screen and (max-width: 1200px) {
+    main {
+        padding: 1rem;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-    #main {
-        grid-template-columns: 1fr 1fr;
-        padding: 0;
+    #row-2 {
+        flex-direction: column;
+    }
+
+    #history {
+        margin-right: 0rem;
+        margin-bottom: 1rem;
+    }
+
+    main {
+        padding: 0rem;
     }
 }
 
 @media screen and (max-width: 700px) {
-    #main {
-        grid-template-columns: 100vw;
+
+    .title {
+        width: 100%;
+    }
+
+    #row-1 {
+        flex-direction: column;
+    }
+
+    #standings {
+        margin-bottom: 1rem;
+        margin-right: 0rem;
     }
 
     .modal-options {

@@ -10,10 +10,13 @@
   } @else {
   <div class="placeholder">No League Selected</div>
   }
-  <div></div>
-  <standings id="standings" class="content" [leagueData]="leagueData"></standings>
-  <div class="placeholder">Placeholder</div>
-  <league-history [league]="leagueHistory" class="content"></league-history>
-  <div class="placeholder">Placeholder</div>
+  <div id="row-1">
+    <standings id="standings" class="content" [leagueData]="leagueData"></standings>
+    <div class="placeholder content">Placeholder</div>
+  </div>
+  <div id="row-2">
+    <league-history id="history" [league]="leagueHistory" class="content"></league-history>
+    <div class="placeholder content">Placeholder</div>
+  </div>
   <div class="break"></div>
 </main>

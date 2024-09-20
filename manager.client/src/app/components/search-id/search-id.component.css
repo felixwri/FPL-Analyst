@@ -91,6 +91,7 @@
 
 .league-item {
     /* background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); */
+    background-color: var(--darker-background);
     padding: 1rem;
     border-radius: var(--border-radius);
     border: 2px solid var(--accent-primary);

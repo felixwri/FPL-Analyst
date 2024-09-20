@@ -1,5 +1,5 @@
 main {
-    height: calc(100vh - 4rem);
+    min-height: calc(100vh - 4rem);
     background: linear-gradient(30deg, var(--black), var(--background) 70%);
     width: 100vw;
     max-width: 100%;

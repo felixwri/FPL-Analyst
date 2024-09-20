@@ -1,28 +1,88 @@
 .chart-container {
-    height: 90%;
+    /* height: 90%; */
+    width: 50vw;
+    height: 60vh;
 }
 
 .point-graph {
     padding: 1rem;
-    height: 60vh;
+    /* height: 60vh; */
 }
 
 .g-button {
     border-radius: var(--border-radius);
     background-color: var(--background);
+    border: none;
     color: var(--text-color);
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+
+    font-family: var(--font);
+    font-weight: bold;
 }
 
 .buttons {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+}
+
+.chart-flex {
+    display: flex;
+}
+
+.player-name {
+    background-color: var(--background);
+    border-radius: var(--border-radius);
+    padding: 5px;
+    display: flex;
+}
+
+.chart-labels {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 5px;
+}
+
+.player-color {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.name {
+    white-space: nowrap;
+}
+
+@media screen and (min-width: 1200px) {
+    .chart-container {
+        width: 40vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .chart-container {
+        width: 70vw;
+    }
+
+    .chart-labels {
+        flex-grow: 1;
+    }
 }
 
 @media screen and (max-width: 700px) {
     .chart-container {
         width: calc(100vw - 4rem);
+    }
+
+    .chart-flex {
+        flex-direction: column;
+    }
+
+    .chart-labels {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
     }
 }

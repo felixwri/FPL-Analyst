@@ -1,18 +1,50 @@
 .placeholder {
     background-color: var(--darker-background);
-    border-radius: var(--border-radius);
+
     padding: 1rem;
 }
 
-#main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    padding: 1rem;
+#row-1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#fixtures {
+    margin-right: 1rem;
+    flex-grow: 1;
+}
+
+#row-2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#row-2>div:first-child {
+    margin-right: 1rem;
+    flex-grow: 1;
+    height: 50vh;
+}
+
+.content {
+    border-radius: var(--border-radius);
+    border: 2px solid var(--accent-secondary);
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        padding: 2rem 20vw;
+    }
 }
 
 @media screen and (max-width: 700px) {
-    #main {
-        grid-template-columns: 1fr;
+    #row-1 {
+        flex-direction: column;
+    }
+
+    #fixtures {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 }

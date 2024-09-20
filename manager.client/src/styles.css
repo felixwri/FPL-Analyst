@@ -21,7 +21,7 @@
     --accent-secondary: rgb(94, 96, 192);
 
     --positive: rgb(22, 189, 255);
-    --negative: rgb(255, 97, 123);
+    --negative: rgb(255, 26, 64);
 
     --warning: rgb(255, 255, 0);
 
@@ -30,10 +30,12 @@
 
     --nav-height: 4rem;
 
+    --font: "Noto Sans", sans-serif;
+
 
     background-color: var(--background);
     color: var(--text-color);
-    font-family: "Noto Sans", sans-serif;
+    font-family: var(--font);
 }
 
 @media (prefers-color-scheme: light) {

@@ -2,15 +2,26 @@
 <div class="point-graph">
   <h2>Weekly Points</h2>
   <div class="buttons">
+    <button class="g-button" (click)="historyChart('total')">Positions</button>
     <button class="g-button" (click)="historyChart('rank')">Rank</button>
     <button class="g-button" (click)="historyChart('points')">Points</button>
-    <button class="g-button" (click)="historyChart('pointsBench')">Points On The Bench</button>
-    <button class="g-button" (click)="historyChart('pointsTotal')">Total Points</button>
   </div>
-  <div class="chart-container">
-    @if (chart.hasData) {
-    <canvas class="chart" baseChart [data]="chart.data" [options]="chart.options" [type]="'line'"> </canvas>
-    }
+  <div class="chart-flex">
+    <div class="chart-container">
+      @if (chart.hasData) {
+      <canvas class="chart" baseChart [data]="chart.data" [options]="chart.options" [type]="'line'"> </canvas>
+      }
+    </div>
+    <div class="chart-labels">
+      @for (player of league; track $index) {
+      <div class="player-name">
+        <div class="player-color" [style.background-color]="colorMap[player.name]"></div>
+        <div class="name">{{ player.name }}</div>
+      </div>
+      }
+      <div class="break"></div>
+      <div class="break"></div>
+    </div>
   </div>
 </div>
 }
