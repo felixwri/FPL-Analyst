@@ -43,6 +43,11 @@
     align-items: center;
 }
 
+.live-points {
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
 .table-right {
     display: flex;
     align-items: center;

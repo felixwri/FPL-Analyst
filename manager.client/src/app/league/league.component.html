@@ -11,8 +11,8 @@
   <div class="placeholder">No League Selected</div>
   }
   <div id="row-1">
-    <standings id="standings" class="content" [leagueData]="leagueData"></standings>
-    <div class="placeholder content">Placeholder</div>
+    <standings id="standings" class="content" [leagueData]="leagueData" [managerPicks]="managerPicks"></standings>
+    <league-stats id="stats" class="content" [managerPicks]="managerPicks"></league-stats>
   </div>
   <div id="row-2">
     <league-history id="history" [league]="leagueHistory" class="content"></league-history>

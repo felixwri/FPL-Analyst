@@ -37,3 +37,29 @@ export interface LeagueHistory {
   points_on_bench: number[];
   total_points: number[];
 }
+
+export interface Player {
+  isLive: boolean;
+  multiplier: number;
+  id: number;
+  firstName: string;
+  secondName: string;
+  teamId: number;
+  teamName: string;
+  totalPoints: number;
+  bonusPoints: number;
+  minutes: number;
+  goalsScored: number;
+  expectedGoalsScored: string;
+  assists: number;
+  cleanSheets: number;
+  goalsConceded: number;
+  ownGoals: number;
+  saves: number;
+}
+
+export interface Picks {
+  id: number;
+  team: string;
+  picks: Player[];
+}

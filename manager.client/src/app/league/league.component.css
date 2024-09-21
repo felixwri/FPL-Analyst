@@ -3,6 +3,8 @@
     border-radius: var(--border-radius);
 
     border: 2px solid var(--accent-primary);
+
+    box-shadow: 0 0px 8px var(--black);
 }
 
 .placeholder {

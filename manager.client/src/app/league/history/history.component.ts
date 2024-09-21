@@ -3,7 +3,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import { League, LeagueHistory } from '../../../types';
 import { ColorMap, generateColorMap } from './colorHandler';
-import { calculatePosition, calculatePositionCumilative } from './chartFunctions';
+import { calcPositions, calculatePosition, calculatePositionCumilative } from './chartFunctions';
 
 @Component({
   selector: 'league-history',
@@ -20,11 +20,9 @@ export class HistoryComponent {
   ngOnChanges(): void {
     if (!this.league) return;
 
-    console.log(this.league);
-
     this.colorMap = generateColorMap(this.league);
 
-    calculatePositionCumilative(this.chart, this.league, this.colorMap);
+    calcPositions(this.chart, this.league, this.colorMap);
   }
 
   historyChart(type: 'total' | 'rank' | 'points' | 'pointsBench' | 'pointsTotal') {
@@ -80,18 +78,6 @@ export class ChartHandler {
     };
     let delayed = false;
     this.options = {
-      animation: {
-        onComplete: () => {
-          delayed = true;
-        },
-        delay: (context) => {
-          let delay = 0;
-          if (context.type === 'data' && context.mode === 'default' && !delayed) {
-            delay = context.dataIndex * 100;
-          }
-          return delay;
-        },
-      },
       scales: {
         y: {
           min: 1,

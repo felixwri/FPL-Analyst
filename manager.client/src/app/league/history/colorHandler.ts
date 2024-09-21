@@ -26,7 +26,7 @@ export function generateColorMap(league: LeagueHistory[]) {
   for (let i = 0; i < league.length; i++) {
     let color = i < half ? lerpColor(colorA, colorB, i / half) : lerpColor(colorB, colorC, (i - half) / half);
     colorMap[league[i].name] = `rgb(${Math.floor(color.r)}, ${Math.floor(color.g)}, ${Math.floor(color.b)})`;
-    console.log(colorMap[league[i].name]);
+    // console.log(colorMap[league[i].name]);
   }
 
   return colorMap;

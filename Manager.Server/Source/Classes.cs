@@ -11,11 +11,14 @@ namespace Manager.Server.Source
         };
     }
 
-    public class Static
+    public class GameWeek
     {
-        int CurrentGameWeek { get; set; } = 0;
-        int NextGameWeek { get; set; } = 0;
-        int PreviousGameWeek { get; set; } = 0;
+        public DateTime Checked { get; set; } = DateTime.Now;
+        public int Id { get; set; } = 1;
+        public bool IsActive { get; set; } = false;
+        public bool CurrentGameWeek { get; set; } = true;
+        public bool NextGameWeek { get; set; } = false;
+        public bool PreviousGameWeek { get; set; } = false;
     }
 
     public class TeamData
@@ -34,11 +37,14 @@ namespace Manager.Server.Source
 
     public class PlayerData
     {
+        public bool IsLive { get; set; } = false;
+        public int Multiplier { get; set; } = 1;
+
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string SecondName { get; set; } = string.Empty;
 
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; } = null;
         public string TeamName { get; set; } = string.Empty;
 
         public int TotalPoints { get; set; }
@@ -46,7 +52,7 @@ namespace Manager.Server.Source
 
         public int Minutes { get; set; }
         public int GoalsScored { get; set; }
-        public int ExpectedGoalsScored { get; set; }
+        public string ExpectedGoalsScored { get; set; } = string.Empty;
         public int Assists { get; set; }
         public int CleanSheets { get; set; }
         public int GoalsConceded { get; set; }
@@ -57,6 +63,16 @@ namespace Manager.Server.Source
         {
             return $"Id: {Id}, Name: {FirstName} {SecondName}";
         }
+    }
+
+
+    public class ManagerPicks
+    {
+        public bool IsLive { get; set; } = false;
+        public int Gameweek { get; set; }
+        public string Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public List<PlayerData> Picks { get; set; } = [];
     }
 
     public class TeamHistory(string Id, string Name)

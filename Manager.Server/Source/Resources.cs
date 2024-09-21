@@ -17,6 +17,16 @@ namespace Manager.Server.Source
             return $"https://fantasy.premierleague.com/api/entry/{teamID}/";
         }
 
+        public static string ManagerPicks(string teamID, int gameweek)
+        {
+            return $"https://fantasy.premierleague.com/api/entry/{teamID}/event/{gameweek}/picks/";
+        }
+
+        public static string LivePlayerData(int gameweek)
+        {
+            return $"https://fantasy.premierleague.com/api/event/{gameweek}/live/";
+        }
+
         public static string Fixtures()
         {
             return $"https://fantasy.premierleague.com/api/fixtures/";

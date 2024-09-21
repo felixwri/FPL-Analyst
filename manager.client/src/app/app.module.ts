@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { LeagueComponent } from './league/league.component';
 import { FormsModule } from '@angular/forms';
+
 import { SearchIdComponent } from './components/search-id/search-id.component';
 import { PersonalComponent } from './personal/personal.component';
 import { FixturesComponent } from './personal/fixtures/fixtures.component';
@@ -16,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ChooseLeagueComponent } from './league/choose-league/choose-league.component';
 import { StandingsComponent } from './league/standings/standings.component';
 import { HistoryComponent } from './league/history/history.component';
+import { StatsComponent } from './league/stats/stats.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LeagueComponent, PersonalComponent],
@@ -31,6 +33,7 @@ import { HistoryComponent } from './league/history/history.component';
     ChooseLeagueComponent,
     StandingsComponent,
     HistoryComponent,
+    StatsComponent,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())],
 })

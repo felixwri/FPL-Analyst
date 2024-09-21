@@ -30,6 +30,8 @@
 .content {
     border-radius: var(--border-radius);
     border: 2px solid var(--accent-secondary);
+
+    box-shadow: 0 0px 8px var(--black);
 }
 
 @media screen and (min-width: 1200px) {
