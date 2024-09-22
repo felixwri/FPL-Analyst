@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ServerURL } from '../../env/environment';
 import { StorageService } from '../services/storage.service';
-import { LeagueHistory, Picks, TeamData } from '../../types';
+import { LeagueData, LeagueHistory, Picks, TeamData } from '../../types';
 
 @Component({
   selector: 'app-league',
@@ -12,7 +12,7 @@ import { LeagueHistory, Picks, TeamData } from '../../types';
 })
 export class LeagueComponent {
   leagueId: string | number | null = null;
-  leagueData: any[any] | null = null;
+  leagueData: LeagueData | null = null;
   managerPicks: Picks[] | null = null;
   leagueHistory: LeagueHistory[] | null = null;
   teamData: TeamData | null = null;
@@ -67,7 +67,7 @@ export class LeagueComponent {
 
   getLeagueData(): void {
     this.apiservice.get(`${ServerURL}/league/${this.leagueId}`).subscribe({
-      next: (res) => {
+      next: (res: LeagueData) => {
         console.log(res);
         this.leagueData = res;
       },

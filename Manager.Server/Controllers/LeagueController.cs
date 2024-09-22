@@ -11,8 +11,42 @@ namespace Manager.Server.Controllers
     {
         private static async Task<string> GetLeagueData(string leagueId)
         {
-            return await Fetch.Get(Resources.LeagueData(leagueId));
+            League league = new()
+            {
+                Id = leagueId,
+                Week = Cache.Instance.Week
+            };
+
+            string JSON = await Fetch.Get(Resources.LeagueData(leagueId));
+            JObject leagueObject = JObject.Parse(JSON);
+
+            league.Name = leagueObject["league"]?["name"]?.ToString() ?? string.Empty;
+
+            JArray results = JArray.Parse(leagueObject["standings"]?["results"]?.ToString() ?? string.Empty);
+
+            List<JToken> managers = [.. results.Children()];
+
+            league.Size = managers.Count;
+
+            foreach (JToken result in managers)
+            {
+                TeamManager manager = new()
+                {
+                    Id = result["entry"]?.ToString() ?? string.Empty,
+                    TeamName = result["entry_name"]?.ToString() ?? string.Empty,
+                    ManagerName = result["player_name"]?.ToString() ?? string.Empty,
+                    TotalPoints = int.Parse(result["total"]?.ToString() ?? "0"),
+                    GameweekPoints = int.Parse(result["event_total"]?.ToString() ?? "0"),
+                    Rank = int.Parse(result["rank"]?.ToString() ?? "0"),
+                    LastRank = int.Parse(result["last_rank"]?.ToString() ?? "0")
+                };
+                league.Teams.Add(manager);
+            }
+
+            string res = JsonSerializer.Serialize(league, JsonOptionsProvider.Options);
+            return res;
         }
+
 
         /// <summary>
         /// Gets the player ids for the top 30 teams in a league

@@ -24,6 +24,24 @@ export interface UpcomingFixtures {
   ];
 }
 
+export interface LeagueData {
+  id: number;
+  name: string;
+  size: number;
+  week: number;
+  teams: [
+    {
+      id: number;
+      teamName: string;
+      managerName: string;
+      totalPoints: number;
+      gameWeekPoints: number;
+      rank: number;
+      lastRank: number;
+    },
+  ];
+}
+
 export interface League {
   leagueId: number;
   leagueName: string;

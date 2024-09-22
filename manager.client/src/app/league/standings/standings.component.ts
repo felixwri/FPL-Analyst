@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Picks } from '../../../types';
+import { League, LeagueData, Picks } from '../../../types';
 
 @Component({
   selector: 'standings',
@@ -10,7 +10,7 @@ import { Picks } from '../../../types';
   styleUrl: './standings.component.css',
 })
 export class StandingsComponent {
-  @Input() leagueData: any;
+  @Input() leagueData?: LeagueData | null;
   @Input() managerPicks?: Picks[] | null;
   liveScores?: { [key: number]: number } | null;
 

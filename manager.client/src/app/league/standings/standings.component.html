@@ -2,7 +2,7 @@
   <div *ngIf="leagueData" class="table">
     <h2 class="table-title">Current Standings</h2>
 
-    @if (!liveScores) { @for (league of leagueData.standings.results; track $index) {
+    @if (!liveScores) { @for (league of leagueData.teams; track $index) {
     <ul>
       <li class="table-entry">
         <div class="table-entry-left">
@@ -10,18 +10,18 @@
             <div class="table-team-position">{{ league.rank }}</div>
           </div>
           <div>
-            <div class="table-team-name">{{ league.entry_name }}</div>
-            <div class="table-player-name">{{ league.player_name }}</div>
+            <div class="table-team-name">{{ league.teamName }}</div>
+            <div class="table-player-name">{{ league.managerName }}</div>
           </div>
         </div>
         <div class="table-right">
-          <div class="table-week-points">{{ league.event_total }}</div>
+          <div class="table-week-points">{{ league.gameWeekPoints }}</div>
 
-          <div class="table-total-points">{{ league.total }}</div>
+          <div class="table-total-points">{{ league.totalPoints }}</div>
         </div>
       </li>
     </ul>
-    } } @else { @for (league of leagueData.standings.results; track $index) {
+    } } @else { @for (league of leagueData.teams; track $index) {
     <ul>
       <li class="table-entry">
         <div class="table-entry-left">
@@ -29,14 +29,14 @@
             <div class="table-team-position">{{ league.rank }}</div>
           </div>
           <div>
-            <div class="table-team-name">{{ league.entry_name }}</div>
-            <div class="table-player-name">{{ league.player_name }}</div>
+            <div class="table-team-name">{{ league.teamName }}</div>
+            <div class="table-player-name">{{ league.managerName }}</div>
           </div>
         </div>
         <div class="table-right">
-          <div class="table-week-points live-points">{{ liveScores[league.entry] }}</div>
+          <div class="table-week-points live-points">{{ liveScores[league.id] }}</div>
 
-          <div class="table-total-points live-points">{{ liveScores[league.entry] + league.total }}</div>
+          <div class="table-total-points live-points">{{ liveScores[league.id] + league.totalPoints }}</div>
         </div>
       </li>
     </ul>

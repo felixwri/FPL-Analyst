@@ -21,6 +21,28 @@ namespace Manager.Server.Source
         public bool PreviousGameWeek { get; set; } = false;
     }
 
+    public class League
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public int Week { get; set; } = 1;
+        public int Size { get; set; } = 0;
+        public List<TeamManager> Teams { get; set; } = [];
+    }
+
+    public class TeamManager
+    {
+        public string Id { get; set; } = string.Empty;
+        public string TeamName { get; set; } = string.Empty;
+        public string ManagerName { get; set; } = string.Empty;
+
+        public int TotalPoints { get; set; } = 0;
+        public int GameweekPoints { get; set; } = 0;
+
+        public int Rank { get; set; } = 0;
+        public int LastRank { get; set; } = 0;
+    }
+
     public class TeamData
     {
         public int Code { get; set; }

@@ -1,3 +1,46 @@
 section {
-    width: 5rem;
+    min-width: 15rem;
+    width: 20vw;
+    padding: 1rem;
+}
+
+.frequency {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 2rem;
+}
+
+.freq-list {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--grey-text-color);
+}
+
+.freq-name {
+    display: inline-block;
+    margin-left: 1rem;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    width: 8rem;
+    overflow: hidden;
+}
+
+.freq-left {
+    display: flex;
+    justify-content: center;
+}
+
+.freq-percent {
+    color: var(--grey-text-color);
+}
+
+@media screen and (max-width: 700px) {
+    section {
+        width: 100%;
+    }
+
+    .freq-name {
+        width: 100%;
+    }
 }

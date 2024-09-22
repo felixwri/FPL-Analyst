@@ -1,1 +1,18 @@
-<section></section>
+<section>
+  <h2>Stats</h2>
+  <div>Most Picked Players</div>
+
+  <div class="freq-list">
+    @if (frequencyArray.length > 0) { @for (playerFrequency of frequencyArray; track $index) {
+    <div class="frequency">
+      <div class="freq-left">
+        <span class="freq-percent">{{ playerFrequency.frequency }}%</span>
+        <span class="freq-name">{{ playerFrequency.name }}</span>
+      </div>
+      <div class="freq-right">
+        <span>{{ playerFrequency.points }}</span>
+      </div>
+    </div>
+    } }
+  </div>
+</section>
