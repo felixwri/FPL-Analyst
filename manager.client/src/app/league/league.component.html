@@ -6,7 +6,10 @@
 
 <main id="main">
   @if (leagueData) {
-  <div class="title placeholder">{{ leagueData.name }}</div>
+  <div class="title placeholder">
+    <div>{{ leagueData.name }}</div>
+    <div>Week {{ leagueData.week }}</div>
+  </div>
   } @else {
   <div class="placeholder">No League Selected</div>
   }

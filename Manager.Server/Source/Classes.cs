@@ -23,17 +23,29 @@ namespace Manager.Server.Source
 
     public class League
     {
-        public string Id { get; set; } = string.Empty;
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int Week { get; set; } = 1;
         public int Size { get; set; } = 0;
         public List<TeamManager> Teams { get; set; } = [];
     }
 
-    public class TeamManager
+    public class Team
     {
-        public string Id { get; set; } = string.Empty;
-        public string TeamName { get; set; } = string.Empty;
+        public int Id { get; set; } = 0;
+        public string Name { get; set; } = string.Empty;
+
+        public Team() { }
+
+        public Team(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+    }
+
+    public class TeamManager : Team
+    {
         public string ManagerName { get; set; } = string.Empty;
 
         public int TotalPoints { get; set; } = 0;
@@ -43,11 +55,9 @@ namespace Manager.Server.Source
         public int LastRank { get; set; } = 0;
     }
 
-    public class TeamData
+    public class TeamData : Team
     {
         public int Code { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
         public int Strength_Overall_Home { get; set; }
         public int Strength_Overall_Away { get; set; }
 
@@ -92,15 +102,15 @@ namespace Manager.Server.Source
     {
         public bool IsLive { get; set; } = false;
         public int Gameweek { get; set; }
-        public string Id { get; set; } = string.Empty;
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public List<PlayerData> Picks { get; set; } = [];
     }
 
-    public class TeamHistory(string Id, string Name)
+    public class TeamHistory(int Id, string Name) : Team
     {
-        public string Id { get; set; } = Id;
-        public string Name { get; set; } = Name;
+        public new int Id { get; set; } = Id;
+        public new string Name { get; set; } = Name;
         public List<int> Points { get; set; } = [];
         public List<int> Total_points { get; set; } = [];
         public List<int> Points_on_bench { get; set; } = [];

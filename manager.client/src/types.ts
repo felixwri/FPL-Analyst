@@ -35,7 +35,7 @@ export interface LeagueData {
       teamName: string;
       managerName: string;
       totalPoints: number;
-      gameWeekPoints: number;
+      gameweekPoints: number;
       rank: number;
       lastRank: number;
     },

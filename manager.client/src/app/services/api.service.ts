@@ -25,4 +25,8 @@ export class ApiService {
   getFixtures(): Observable<UpcomingFixtures[]> {
     return this.httpClient.get(`${ServerURL}/fixture`) as Observable<UpcomingFixtures[]>;
   }
+
+  getPicks(teamId: string): Observable<any> {
+    return this.httpClient.get(`${ServerURL}/team/${teamId}/players`) as Observable<any>;
+  }
 }

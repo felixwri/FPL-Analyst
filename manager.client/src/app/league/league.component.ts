@@ -35,8 +35,6 @@ export class LeagueComponent {
     }
 
     if (!this.leagueId && this.teamData) {
-      // this.getLeagueData();
-
       if (this.teamData.leagues.length === 1) {
         this.leagueId = this.teamData.leagues[0].id;
         this.leagueSelected(this.leagueId);
@@ -53,6 +51,7 @@ export class LeagueComponent {
     if (this.leagueId !== null) {
       this.getLeagueData();
       this.getLeagueHistory(this.leagueId);
+      this.getLeaguePicks();
     }
   }
 

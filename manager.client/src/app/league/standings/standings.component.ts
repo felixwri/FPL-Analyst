@@ -12,7 +12,8 @@ import { League, LeagueData, Picks } from '../../../types';
 export class StandingsComponent {
   @Input() leagueData?: LeagueData | null;
   @Input() managerPicks?: Picks[] | null;
-  liveScores?: { [key: number]: number } | null;
+  liveScores: { [key: number]: number } = {};
+  isLive: boolean = false;
 
   ngOnChanges(): void {
     if (!this.managerPicks) return;

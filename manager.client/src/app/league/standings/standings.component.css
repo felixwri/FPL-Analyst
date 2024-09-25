@@ -13,7 +13,6 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    /* margin: 0.5rem 0rem; */
     padding: 0.5rem;
     border-bottom: 1px solid var(--grey-text-color);
 }
@@ -29,7 +28,6 @@
 
 .table-team-position {
     margin-right: 1rem;
-    /* border: 2px solid var(--text-color); */
     background-color: var(--text-color);
     color: var(--darker-background);
     font-weight: bold;
@@ -57,4 +55,26 @@
 
 .table-total-points {
     font-weight: bold;
+}
+
+.table>ul:last-child>.table-entry {
+    border-bottom: none;
+}
+
+@media screen and (max-width: 700px) {
+    .table-team-position {
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .table-entry {
+        padding: 0.5rem;
+    }
+
+    .table {
+        padding: 0rem;
+    }
 }

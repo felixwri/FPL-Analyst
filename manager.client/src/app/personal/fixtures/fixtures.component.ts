@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { getColors } from '../../../global';
-import { ServerURL } from '../../../env/environment';
 import { UpcomingFixtures } from '../../../types';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData } from 'chart.js';
@@ -30,6 +29,7 @@ export class FixturesComponent {
       if (data) {
         this.upcomingFixtures = data;
         this.processFixtures();
+        console.log(data);
       }
     });
   }
@@ -162,8 +162,6 @@ class ChartHandler {
   addDataset(dataset: ChartData<'bar'>['datasets'][0]) {
     let newDataset: ChartData<'bar'>['datasets'][0] = dataset;
     this.data.datasets.push(newDataset);
-
-    console.log(this.data);
   }
 
   setData(data: ChartData<'bar'>) {

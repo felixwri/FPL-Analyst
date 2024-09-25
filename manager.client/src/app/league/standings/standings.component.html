@@ -2,7 +2,7 @@
   <div *ngIf="leagueData" class="table">
     <h2 class="table-title">Current Standings</h2>
 
-    @if (!liveScores) { @for (league of leagueData.teams; track $index) {
+    @if (!isLive) { @for (league of leagueData.teams; track $index) {
     <ul>
       <li class="table-entry">
         <div class="table-entry-left">
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="table-right">
-          <div class="table-week-points">{{ league.gameWeekPoints }}</div>
+          <div class="table-week-points">{{ league.gameweekPoints }}</div>
 
           <div class="table-total-points">{{ league.totalPoints }}</div>
         </div>
