@@ -27,6 +27,9 @@ namespace Manager.Server.Source
             {
                 int playerId = int.Parse(result["id"]?.ToString() ?? string.Empty);
 
+                int livePoints = result["stats"]?["total_points"]?.ToObject<int>() ?? 0;
+
+
                 PlayerData playerData = new()
                 {
                     IsLive = true,
@@ -38,7 +41,8 @@ namespace Manager.Server.Source
                     TeamId = playerAssignment[playerId].TeamId,
                     TeamName = playerAssignment[playerId].TeamName,
 
-                    TotalPoints = result["stats"]?["total_points"]?.ToObject<int>() ?? 0,
+                    WeekPoints = livePoints,
+                    TotalPoints = playerAssignment[playerId].TotalPoints + livePoints,
                     BonusPoints = result["stats"]?["bonus"]?.ToObject<int>() ?? 0,
                     Minutes = result["stats"]?["minutes"]?.ToObject<int>() ?? 0,
                     GoalsScored = result["stats"]?["goals_scored"]?.ToObject<int>() ?? 0,
@@ -70,7 +74,7 @@ namespace Manager.Server.Source
 
             if (Cache.Instance.GameWeek.IsActive)
             {
-                playerAssignment = await Processing.GetLivePlayerData();
+                playerAssignment = await GetLivePlayerData();
             }
             else
             {
@@ -87,6 +91,7 @@ namespace Manager.Server.Source
                 int playerId = int.Parse(pick["element"]?.ToString() ?? string.Empty);
                 PlayerData playerData = playerAssignment[playerId];
                 playerData.Multiplier = int.Parse(pick["multiplier"]?.ToString() ?? "1");
+                playerData.BenchOrder = int.Parse(pick["position"]?.ToString() ?? "0");
                 managerPicks.Picks.Add(playerData);
             }
             return managerPicks;

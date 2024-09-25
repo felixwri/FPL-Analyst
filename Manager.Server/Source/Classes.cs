@@ -11,6 +11,16 @@ namespace Manager.Server.Source
         };
     }
 
+    public class Position
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Short { get; set; } = string.Empty;
+        public int Min { get; set; }
+        public int Max { get; set; }
+    }
+
+
     public class GameWeek
     {
         public DateTime Checked { get; set; } = DateTime.Now;
@@ -71,6 +81,8 @@ namespace Manager.Server.Source
     {
         public bool IsLive { get; set; } = false;
         public int Multiplier { get; set; } = 1;
+        public int ImageCode { get; set; }
+        public int BenchOrder { get; set; } = 0;
 
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -79,6 +91,10 @@ namespace Manager.Server.Source
         public int? TeamId { get; set; } = null;
         public string TeamName { get; set; } = string.Empty;
 
+        public string Position { get; set; } = string.Empty;
+        public string PositionShort { get; set; } = string.Empty;
+
+        public int WeekPoints { get; set; }
         public int TotalPoints { get; set; }
         public int BonusPoints { get; set; }
 

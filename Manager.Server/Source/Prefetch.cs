@@ -37,6 +37,27 @@ namespace Manager.Server.Source
             return teamDataList;
         }
 
+        public async Task<Dictionary<int, Position>> GetPositionAssignment()
+        {
+            List<JToken> positions = await UnpackBootstrapData("element_types");
+
+            Dictionary<int, Position> positionDict = [];
+            foreach (JToken result in positions)
+            {
+                int id = result["id"]?.ToObject<int>() ?? 0;
+                Position position = new()
+                {
+                    Id = id,
+                    Name = result["singular_name"]?.ToString() ?? string.Empty,
+                    Short = result["singular_name_short"]?.ToString() ?? string.Empty,
+                    Min = result["squad_min_play"]?.ToObject<int>() ?? 0,
+                    Max = result["squad_max_play"]?.ToObject<int>() ?? 0,
+                };
+                positionDict.Add(id, position);
+            }
+            return positionDict;
+        }
+
         public async Task<GameWeek> GetStaticContent()
         {
             List<JToken> gameweeks = await UnpackBootstrapData("events");
@@ -86,11 +107,16 @@ namespace Manager.Server.Source
                 PlayerData playerData = new()
                 {
                     IsLive = false,
+                    ImageCode = result["code"]?.ToObject<int>() ?? 0,
+                    BenchOrder = 0,
                     Id = result["id"]?.ToObject<int>() ?? 0,
                     FirstName = result["first_name"]?.ToString() ?? string.Empty,
                     SecondName = result["second_name"]?.ToString() ?? string.Empty,
                     TeamId = teamId,
                     TeamName = Cache.Instance.Teams[teamId].Name,
+                    Position = Cache.Instance.Positions[result["element_type"]?.ToObject<int>() ?? 0].Name,
+                    PositionShort = Cache.Instance.Positions[result["element_type"]?.ToObject<int>() ?? 0].Short,
+                    WeekPoints = result["event_points"]?.ToObject<int>() ?? 0,
                     TotalPoints = result["total_points"]?.ToObject<int>() ?? 0,
                     BonusPoints = result["bonus"]?.ToObject<int>() ?? 0,
                     Minutes = result["minutes"]?.ToObject<int>() ?? 0,

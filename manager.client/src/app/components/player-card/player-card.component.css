@@ -1,0 +1,69 @@
+.player-card {
+    width: calc(20vw - 2rem);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--darker-background);
+
+    box-shadow: 0 0px 8px var(--accent-secondary);
+}
+
+.player-name {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    background-color: var(--background);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+img {
+    width: 60%;
+    height: auto;
+}
+
+@media screen and (min-width: 1200px) {
+    .player-card {
+        margin: 0.5rem 0.5rem;
+        width: 10vw;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+
+    .player-name {
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
+        font-size: 1rem;
+    }
+
+
+}
+
+@media screen and (max-width: 700px) {
+    img {
+        width: 80%;
+    }
+
+    .player-card {
+        margin: 0.5rem 0.25rem;
+        width: calc(20vw - 0.8rem);
+    }
+
+    .card-text {
+        font-size: 0.6rem;
+    }
+
+    .player-name {
+        font-size: 0.6rem;
+    }
+}

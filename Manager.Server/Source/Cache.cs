@@ -7,6 +7,7 @@ namespace Manager.Server.Source
         public GameWeek GameWeek = new();
         public List<Fixture> Fixtures = [];
         public Dictionary<int, TeamData> Teams = [];
+        public Dictionary<int, Position> Positions = [];
         public Dictionary<int, PlayerData> Players = [];
         public List<UpcomingFixtures> AllUpcomingFixtures = [];
 
@@ -20,6 +21,7 @@ namespace Manager.Server.Source
         {
             Prefetch prefetch = new();
             GameWeek = await prefetch.GetStaticContent();
+            Positions = await prefetch.GetPositionAssignment();
             Teams = await prefetch.GetTeamAssignment();
             Fixtures = await prefetch.GetFixtures();
             Players = await prefetch.GetPlayerAssignment();

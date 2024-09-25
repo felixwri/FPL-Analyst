@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ServerURL } from '../../env/environment';
-import { LeagueHistory, UpcomingFixtures } from '../../types';
+import { LeagueHistory, Picks, UpcomingFixtures } from '../../types';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class ApiService {
     return this.httpClient.get(`${ServerURL}/fixture`) as Observable<UpcomingFixtures[]>;
   }
 
-  getPicks(teamId: string): Observable<any> {
-    return this.httpClient.get(`${ServerURL}/team/${teamId}/players`) as Observable<any>;
+  getPicks(teamId: string): Observable<Picks> {
+    return this.httpClient.get(`${ServerURL}/team/${teamId}/players`) as Observable<Picks>;
   }
 }

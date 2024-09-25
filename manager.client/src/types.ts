@@ -56,14 +56,33 @@ export interface LeagueHistory {
   total_points: number[];
 }
 
+export enum Positions {
+  Goalkeeper = 'Goalkeeper',
+  Defender = 'Defender',
+  Midfielder = 'Midfielder',
+  Forward = 'Forward',
+}
+
+export enum PositionsShort {
+  GKP = 'Goalkeeper',
+  DEF = 'Defender',
+  MID = 'Midfielder',
+  FWD = 'Forward',
+}
+
 export interface Player {
   isLive: boolean;
   multiplier: number;
+  imageCode: number;
+  benchOrder: number;
   id: number;
   firstName: string;
   secondName: string;
   teamId: number;
   teamName: string;
+  position: Positions;
+  positionShort: PositionsShort;
+  weekPoints: number;
   totalPoints: number;
   bonusPoints: number;
   minutes: number;

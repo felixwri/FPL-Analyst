@@ -18,6 +18,8 @@ import { ChooseLeagueComponent } from './league/choose-league/choose-league.comp
 import { StandingsComponent } from './league/standings/standings.component';
 import { HistoryComponent } from './league/history/history.component';
 import { StatsComponent } from './league/stats/stats.component';
+import { TeamComponent } from './personal/team/team.component';
+import { PlayerCardComponent } from './components/player-card/player-card.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LeagueComponent, PersonalComponent],
@@ -34,6 +36,8 @@ import { StatsComponent } from './league/stats/stats.component';
     StandingsComponent,
     HistoryComponent,
     StatsComponent,
+    TeamComponent,
+    PlayerCardComponent,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())],
 })

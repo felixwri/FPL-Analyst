@@ -1,1 +1,25 @@
-<p>team works!</p>
+<section>
+  <h2>My Team</h2>
+  @if (players.picks.length > 0) {
+  <div class="player-row">
+    @for (goalkeeper of goalkeepers; track $index) {
+    <player-card [player]="goalkeeper"></player-card>
+    }
+  </div>
+  <div class="player-row">
+    @for (defender of defenders; track $index) {
+    <player-card [player]="defender"></player-card>
+    }
+  </div>
+  <div class="player-row">
+    @for (midfielder of midfielders; track $index) {
+    <player-card [player]="midfielder"></player-card>
+    }
+  </div>
+  <div class="player-row">
+    @for (forward of forwards; track $index) {
+    <player-card [player]="forward"></player-card>
+    }
+  </div>
+  }
+</section>
