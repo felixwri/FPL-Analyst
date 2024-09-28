@@ -15,6 +15,14 @@
     justify-content: space-between;
     padding: 0.5rem;
     border-bottom: 1px solid var(--grey-text-color);
+
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+
+.table-entry:hover {
+    background-color: var(--background);
 }
 
 .table-player-name {

@@ -1,0 +1,51 @@
+.player-card {
+    width: 100%;
+    padding: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.card-text {
+    font-size: 0.8rem;
+}
+
+.player-name {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-left {
+    display: flex;
+    align-items: center;
+}
+
+.card-text-left {
+    margin-right: 0.5rem;
+}
+
+.card-right {
+    display: flex;
+    align-items: center;
+}
+
+.player-points {
+    margin-right: 0.5rem;
+}

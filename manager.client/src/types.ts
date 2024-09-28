@@ -32,7 +32,7 @@ export interface LeagueData {
   teams: [
     {
       id: number;
-      teamName: string;
+      name: string;
       managerName: string;
       totalPoints: number;
       gameweekPoints: number;
@@ -95,8 +95,9 @@ export interface Player {
   saves: number;
 }
 
-export interface Picks {
-  id: number;
-  team: string;
-  picks: Player[];
+export class Picks {
+  public id: number = 0;
+  public team: string = '';
+  public managerName: string = '';
+  public picks: Player[] = [];
 }

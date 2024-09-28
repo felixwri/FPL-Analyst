@@ -41,6 +41,10 @@ namespace Manager.Server.Source
                     TeamId = playerAssignment[playerId].TeamId,
                     TeamName = playerAssignment[playerId].TeamName,
 
+                    Position = playerAssignment[playerId].Position,
+                    PositionShort = playerAssignment[playerId].PositionShort,
+                    ImageCode = playerAssignment[playerId].ImageCode,
+
                     WeekPoints = livePoints,
                     TotalPoints = playerAssignment[playerId].TotalPoints + livePoints,
                     BonusPoints = result["stats"]?["bonus"]?.ToObject<int>() ?? 0,
@@ -65,6 +69,7 @@ namespace Manager.Server.Source
             ManagerPicks managerPicks = new()
             {
                 Id = team.Id,
+                ManagerName = team.ManagerName,
                 Name = team.Name,
                 IsLive = Cache.Instance.GameWeek.IsActive,
                 Gameweek = Cache.Instance.Week,

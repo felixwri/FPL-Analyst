@@ -1,0 +1,38 @@
+@if(displayOverlay) {
+<div id="overlay">
+  <div id="overlay-nav">
+    <h2 id="overlay-title">{{ overlayData?.managerName }}</h2>
+    <div class="close" (click)="close()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+      </svg>
+    </div>
+  </div>
+  @if (goalkeepers.length > 0) {
+  <div>GoalKeepers</div>
+  <div class="player">
+    @for (goalkeeper of goalkeepers; track $index) {
+    <mini-player-card class="card" [player]="goalkeeper"></mini-player-card>
+    }
+  </div>
+  <div>Defenders</div>
+  <div class="player">
+    @for (defender of defenders; track $index) {
+    <mini-player-card class="card" [player]="defender"></mini-player-card>
+    }
+  </div>
+  <div>Midfielders</div>
+  <div class="player">
+    @for (midfielder of midfielders; track $index) {
+    <mini-player-card class="card" [player]="midfielder"></mini-player-card>
+    }
+  </div>
+  <div>Forwards</div>
+  <div class="player">
+    @for (forward of forwards; track $index) {
+    <mini-player-card class="card" [player]="forward"></mini-player-card>
+    }
+  </div>
+  }
+</div>
+}

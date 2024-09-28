@@ -20,6 +20,7 @@ import { HistoryComponent } from './league/history/history.component';
 import { StatsComponent } from './league/stats/stats.component';
 import { TeamComponent } from './personal/team/team.component';
 import { PlayerCardComponent } from './components/player-card/player-card.component';
+import { MiniPlayerCardComponent } from './components/mini-player-card/mini-player-card.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LeagueComponent, PersonalComponent],
@@ -38,6 +39,7 @@ import { PlayerCardComponent } from './components/player-card/player-card.compon
     StatsComponent,
     TeamComponent,
     PlayerCardComponent,
+    MiniPlayerCardComponent,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())],
 })

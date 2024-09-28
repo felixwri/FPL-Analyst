@@ -12,16 +12,14 @@ import { PlayerCardComponent } from '../../components/player-card/player-card.co
   styleUrl: './team.component.css',
 })
 export class TeamComponent {
-  public players: Picks;
+  public players: Picks = new Picks();
 
   public goalkeepers: Player[] = [];
   public defenders: Player[] = [];
   public midfielders: Player[] = [];
   public forwards: Player[] = [];
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
-    this.players = { id: 0, team: '', picks: [] };
-  }
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     let teamId = this.route.snapshot.paramMap.get('id');

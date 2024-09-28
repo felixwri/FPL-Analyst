@@ -44,20 +44,25 @@ namespace Manager.Server.Source
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
+        public string ManagerName { get; set; } = string.Empty;
 
         public Team() { }
 
-        public Team(int id, string name)
+        public Team(int id, string name, string managerName)
         {
             Id = id;
             Name = name;
+            ManagerName = managerName;
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name} Manager: {ManagerName}";
         }
     }
 
     public class TeamManager : Team
     {
-        public string ManagerName { get; set; } = string.Empty;
-
         public int TotalPoints { get; set; } = 0;
         public int GameweekPoints { get; set; } = 0;
 
@@ -114,12 +119,10 @@ namespace Manager.Server.Source
     }
 
 
-    public class ManagerPicks
+    public class ManagerPicks : Team
     {
         public bool IsLive { get; set; } = false;
         public int Gameweek { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
         public List<PlayerData> Picks { get; set; } = [];
     }
 

@@ -1,0 +1,24 @@
+@if (player !== null) {
+<div class="player-card">
+  <div class="card-left">
+    <div class="image-container">
+      <img
+        src="https://resources.premierleague.com/premierleague/photos/players/110x140/p{{ player.imageCode }}.png"
+        class="player-image"
+        alt="{{ player.firstName }} Image"
+      />
+    </div>
+    <div class="player-name card-text">{{ player.secondName }}</div>
+  </div>
+  <div class="card-right">
+    <div class="player-points flex-between card-text">
+      <div class="grey card-text-left">Points:</div>
+      <div>{{ player.weekPoints }}</div>
+    </div>
+    <div class="card-text flex-between">
+      <div class="grey card-text-left">XG</div>
+      <div>{{ player.expectedGoalsScored }}</div>
+    </div>
+  </div>
+</div>
+}

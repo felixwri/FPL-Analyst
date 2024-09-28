@@ -68,7 +68,8 @@ namespace Manager.Server.Controllers
             {
                 int teamId = int.Parse(result["entry"]?.ToString() ?? string.Empty);
                 string teamName = result["player_name"]?.ToString() ?? string.Empty;
-                Ids.Add(new Team(teamId, teamName));
+                string managerName = result["entry_name"]?.ToString() ?? string.Empty;
+                Ids.Add(new Team(teamId, teamName, managerName));
             }
 
             if (Ids.Count == 0)

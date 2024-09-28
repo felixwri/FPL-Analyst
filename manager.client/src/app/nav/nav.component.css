@@ -85,7 +85,7 @@
     background-color: var(--background);
     padding: 1rem;
     border-left: 2px solid var(--accent-primary);
-    z-index: 5;
+    z-index: 99;
 }
 
 .sidebar-title {

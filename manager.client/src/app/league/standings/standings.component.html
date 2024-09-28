@@ -1,16 +1,20 @@
 <section>
   <div *ngIf="leagueData" class="table">
-    <h2 class="table-title">Current Standings</h2>
-
+    <div class="table-title flex-between">
+      <h2>Current Standings</h2>
+      @if (isLive) {
+      <div class="live-points">Live</div>
+      }
+    </div>
     @if (!isLive) { @for (league of leagueData.teams; track $index) {
     <ul>
-      <li class="table-entry">
+      <li class="table-entry" (click)="display(league.id)">
         <div class="table-entry-left">
           <div>
             <div class="table-team-position">{{ league.rank }}</div>
           </div>
           <div>
-            <div class="table-team-name">{{ league.teamName }}</div>
+            <div class="table-team-name">{{ league.name }}</div>
             <div class="table-player-name">{{ league.managerName }}</div>
           </div>
         </div>
@@ -23,13 +27,13 @@
     </ul>
     } } @else { @for (league of leagueData.teams; track $index) {
     <ul>
-      <li class="table-entry">
+      <li class="table-entry" (click)="display(league.id)">
         <div class="table-entry-left">
           <div>
             <div class="table-team-position">{{ league.rank }}</div>
           </div>
           <div>
-            <div class="table-team-name">{{ league.teamName }}</div>
+            <div class="table-team-name">{{ league.name }}</div>
             <div class="table-player-name">{{ league.managerName }}</div>
           </div>
         </div>
@@ -42,4 +46,10 @@
     </ul>
     } }
   </div>
+
+  <team-overlay
+    [displayOverlay]="displayOverlay"
+    [overlayData]="overlayData"
+    (closeOverlay)="closeOverlay()"
+  ></team-overlay>
 </section>
