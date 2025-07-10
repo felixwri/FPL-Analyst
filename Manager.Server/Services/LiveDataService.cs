@@ -1,18 +1,30 @@
+using Manager.Server.Interfaces;
+using Manager.Server.Models;
+using Manager.Server.Shared;
+using Manager.Server.Source;
 using Newtonsoft.Json.Linq;
 
-namespace Manager.Server.Source
+namespace Manager.Server.Services
 {
-    public class Processing
+    public class LiveDataService: ILiveDataService
     {
+        private readonly IHttpFetchService _fetchService;
+        private readonly Cache _cache;
+        public LiveDataService(IHttpFetchService fetchService, Cache cache)
+        {
+            _fetchService = fetchService;
+            _cache = cache;
+        }
+
         /// <summary>
         /// Fetches the live player data for a given team and returns a dictionary with
         /// the player id as the key
         /// </summary>
         /// <param name="team"></param>
         /// <returns></returns>
-        public static async Task<Dictionary<int, PlayerData>> GetLivePlayerData()
+        public async Task<Dictionary<int, PlayerData>> GetLivePlayerData()
         {
-            string liveDataJSON = await Fetch.Get(Resources.LivePlayerData(Cache.Instance.Week));
+            string liveDataJSON = await _fetchService.Get(Resources.LivePlayerData(_cache.Week));
 
             JObject livePlayerData = JObject.Parse(liveDataJSON);
             JArray results = JArray.Parse(livePlayerData["elements"]?.ToString() ?? string.Empty);
@@ -21,7 +33,7 @@ namespace Manager.Server.Source
 
             Dictionary<int, PlayerData> livePlayerDataAssignment = [];
 
-            Dictionary<int, PlayerData> playerAssignment = Cache.Instance.Players;
+            Dictionary<int, PlayerData> playerAssignment = _cache.Players;
 
             foreach (JToken result in players)
             {
@@ -64,29 +76,29 @@ namespace Manager.Server.Source
             return livePlayerDataAssignment;
         }
 
-        public static async Task<ManagerPicks> GetPicks(Team team)
+        public async Task<ManagerPicks> GetPicks(Team team)
         {
             ManagerPicks managerPicks = new()
             {
                 Id = team.Id,
                 ManagerName = team.ManagerName,
                 Name = team.Name,
-                IsLive = Cache.Instance.GameWeek.IsActive,
-                Gameweek = Cache.Instance.Week,
+                IsLive = _cache.GameWeek.IsActive,
+                Gameweek = _cache.Week,
             };
 
             Dictionary<int, PlayerData> playerAssignment;
 
-            if (Cache.Instance.GameWeek.IsActive)
+            if (_cache.GameWeek.IsActive)
             {
                 playerAssignment = await GetLivePlayerData();
             }
             else
             {
-                playerAssignment = Cache.Instance.Players;
+                playerAssignment = _cache.Players;
             }
 
-            string managerPicksJSON = await Fetch.Get(Resources.ManagerPicks(team.Id, Cache.Instance.Week));
+            string managerPicksJSON = await _fetchService.Get(Resources.ManagerPicks(team.Id, _cache.Week));
 
             JObject managerPicksObject = JObject.Parse(managerPicksJSON);
             JArray managerPicksArray = JArray.FromObject(managerPicksObject["picks"] ?? string.Empty);

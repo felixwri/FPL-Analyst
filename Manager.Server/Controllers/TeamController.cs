@@ -1,6 +1,10 @@
 using System.Text.Json;
+using Manager.Server.Models;
 using Manager.Server.Source;
+using Manager.Server.Shared;
+using Manager.Server.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Manager.Server.Services;
 
 namespace Manager.Server.Controllers
 {
@@ -8,15 +12,23 @@ namespace Manager.Server.Controllers
     [Route("api/[controller]")]
     public class TeamController : ControllerBase
     {
-        private static async Task<string> GetTeamData(int teamID)
+        private readonly ILogger<TeamController> _logger;
+        private readonly HttpFetchService _fetchService;
+        private readonly ILiveDataService _liveDataService;
+        private readonly Cache _cache;
+
+        public TeamController(ILogger<TeamController> logger, HttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
         {
-            return await Fetch.Get(Resources.TeamData(teamID));
+            _logger = logger;
+            _fetchService = fetchService;
+            _liveDataService = liveDataService;
+            _cache = cache;
         }
 
         [HttpGet("{teamId}")]
         public async Task<string> Get([FromRoute] int teamId)
         {
-            return await GetTeamData(teamId);
+            return await _fetchService.Get(Resources.TeamData(teamId));
         }
 
         [HttpGet("{teamId}/players")]
@@ -27,7 +39,7 @@ namespace Manager.Server.Controllers
                 Id = teamId,
             };
 
-            ManagerPicks picks = await Processing.GetPicks(team);
+            ManagerPicks picks = await _liveDataService.GetPicks(team);
 
             return JsonSerializer.Serialize(picks, JsonOptionsProvider.Options);
         }

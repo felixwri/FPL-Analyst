@@ -1,7 +1,11 @@
-using System.Text.Json;
+using Manager.Server.Interfaces;
+using Manager.Server.Models;
+using Manager.Server.Services;
+using Manager.Server.Shared;
 using Manager.Server.Source;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace Manager.Server.Controllers
 {
@@ -9,15 +13,29 @@ namespace Manager.Server.Controllers
     [Route("api/[controller]")]
     public class LeagueController : ControllerBase
     {
-        private static async Task<string> GetLeagueData(int leagueId)
+
+        private readonly ILogger<LeagueController> _logger;
+        private readonly HttpFetchService _fetchService;
+        private readonly ILiveDataService _liveDataService;
+        private readonly Cache _cache;
+
+        public LeagueController(ILogger<LeagueController> logger, HttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
+        {
+            _logger = logger;
+            _fetchService = fetchService;
+            _liveDataService = liveDataService;
+            _cache = cache;
+        }
+
+        private async Task<string> GetLeagueData(int leagueId)
         {
             League league = new()
             {
                 Id = leagueId,
-                Week = Cache.Instance.Week
+                Week = _cache.Week
             };
 
-            string JSON = await Fetch.Get(Resources.LeagueData(leagueId));
+            string JSON = await _fetchService.Get(Resources.LeagueData(leagueId));
             JObject leagueObject = JObject.Parse(JSON);
 
             league.Name = leagueObject["league"]?["name"]?.ToString() ?? string.Empty;
@@ -53,9 +71,9 @@ namespace Manager.Server.Controllers
         /// </summary>
         /// <param name="leagueId"></param>
         /// <returns></returns>
-        private static async Task<List<Team>> GetLeagueIds(int leagueId)
+        private async Task<List<Team>> GetLeagueIds(int leagueId)
         {
-            string leagueJSON = await Fetch.Get(Resources.LeagueData(leagueId));
+            string leagueJSON = await _fetchService.Get(Resources.LeagueData(leagueId));
 
             List<Team> Ids = [];
 
@@ -84,7 +102,7 @@ namespace Manager.Server.Controllers
             return Ids;
         }
 
-        private static async Task<string> GetLeagueHistory(int leagueId)
+        private async Task<string> GetLeagueHistory(int leagueId)
         {
             List<Team> Ids = await GetLeagueIds(leagueId);
 
@@ -101,11 +119,12 @@ namespace Manager.Server.Controllers
             return res;
         }
 
-        private static async Task<TeamHistory> GetTeamHistory(Team team)
+        private async Task<TeamHistory> GetTeamHistory(Team team)
         {
             TeamHistory teamHistory = new(team.Id, team.Name);
 
-            string teamHistoryJSON = await Fetch.Get(Resources.TeamHistory(team.Id));
+            string teamHistoryJSON = await _fetchService.Get(Resources.TeamHistory(team.Id));
+
             JObject teamHistoryObject = JObject.Parse(teamHistoryJSON);
             JArray currentHistory = JArray.FromObject(teamHistoryObject["current"] ?? string.Empty);
 
@@ -119,7 +138,7 @@ namespace Manager.Server.Controllers
         }
 
 
-        private static async Task<string> GetManagerPicks(int leagueId)
+        private async Task<string> GetManagerPicks(int leagueId)
         {
             List<Team> Ids = await GetLeagueIds(leagueId);
 
@@ -127,7 +146,7 @@ namespace Manager.Server.Controllers
 
             foreach (Team team in Ids)
             {
-                tasks.Add(Processing.GetPicks(team));
+                tasks.Add(_liveDataService.GetPicks(team));
             }
 
             ManagerPicks[] completedTasks = await Task.WhenAll(tasks);

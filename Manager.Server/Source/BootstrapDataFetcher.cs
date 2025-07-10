@@ -1,12 +1,29 @@
+using Manager.Server.Interfaces;
+using Manager.Server.Models;
+using Manager.Server.Services;
+using Manager.Server.Shared;
 using Newtonsoft.Json.Linq;
 
 namespace Manager.Server.Source
 {
-    public class Prefetch
+    public class BootstrapDataFetcher
     {
+        private readonly IHttpFetchService _fetchService;
+        private Cache? _cache;
+
+        public BootstrapDataFetcher(IHttpFetchService fetchService)
+        {
+            _fetchService = fetchService;
+        }
+
+        public void SetCache(Cache cache)
+        {
+            _cache = cache;
+        }
+
         public async Task<List<JToken>> UnpackBootstrapData(string key)
         {
-            string bootstapString = await Fetch.Get(Resources.Bootstrap());
+            string bootstapString = await _fetchService.Get(Resources.Bootstrap());
 
             JObject bootstapObject = JObject.Parse(bootstapString);
 
@@ -113,9 +130,9 @@ namespace Manager.Server.Source
                     FirstName = result["first_name"]?.ToString() ?? string.Empty,
                     SecondName = result["second_name"]?.ToString() ?? string.Empty,
                     TeamId = teamId,
-                    TeamName = Cache.Instance.Teams[teamId].Name,
-                    Position = Cache.Instance.Positions[result["element_type"]?.ToObject<int>() ?? 0].Name,
-                    PositionShort = Cache.Instance.Positions[result["element_type"]?.ToObject<int>() ?? 0].Short,
+                    TeamName = _cache.Teams[teamId].Name,
+                    Position = _cache.Positions[result["element_type"]?.ToObject<int>() ?? 0].Name,
+                    PositionShort = _cache.Positions[result["element_type"]?.ToObject<int>() ?? 0].Short,
                     WeekPoints = result["event_points"]?.ToObject<int>() ?? 0,
                     TotalPoints = result["total_points"]?.ToObject<int>() ?? 0,
                     BonusPoints = result["bonus"]?.ToObject<int>() ?? 0,
@@ -137,7 +154,7 @@ namespace Manager.Server.Source
         /// <returns>A List of Fixture Objects</returns>
         public async Task<List<Fixture>> GetFixtures()
         {
-            string fixturesString = await Fetch.Get(Resources.Fixtures());
+            string fixturesString = await _fetchService.Get(Resources.Fixtures());
 
             JArray fixtures = JArray.Parse(fixturesString);
 

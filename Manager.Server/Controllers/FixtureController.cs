@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Manager.Server.Shared;
 using Manager.Server.Source;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,18 @@ namespace Manager.Server.Controllers
     [Route("api/[controller]")]
     public class FixtureController : ControllerBase
     {
-        readonly Cache cache = Cache.Instance;
+        public readonly ILogger<FixtureController> _logger;
+        public readonly Cache _cache;
+
+        public FixtureController(ILogger<FixtureController> logger, Cache cache)
+        {
+            _logger = logger;
+            _cache = cache;
+        }
 
         private string GetUpcomingFixtures()
         {
-            string result = JsonSerializer.Serialize(cache.AllUpcomingFixtures, JsonOptionsProvider.Options);
+            string result = JsonSerializer.Serialize(_cache.AllUpcomingFixtures, JsonOptionsProvider.Options);
             return result;
         }
 

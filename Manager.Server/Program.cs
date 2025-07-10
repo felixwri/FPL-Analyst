@@ -1,9 +1,17 @@
+using Manager.Server.Interfaces;
+using Manager.Server.Services;
 using Manager.Server.Source;
+using Manager.Server.Startup;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var AllowSpecificOrigins = "_AllowSpecificOrigins";
 
-Cache cache = Cache.Instance;
+builder.Services.AddHttpClient();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IHttpFetchService, HttpFetchService>();
+builder.Services.AddScoped<ILiveDataService, LiveDataService>();
+builder.Services.AddSingleton<Cache>();
 
 builder.Services.AddControllers();
 
@@ -25,6 +33,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+await CacheInit.InitialiseAsync(app.Services);
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

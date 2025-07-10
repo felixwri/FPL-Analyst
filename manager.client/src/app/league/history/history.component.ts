@@ -78,6 +78,11 @@ export class ChartHandler {
     };
     let delayed = false;
     this.options = {
+      elements: {
+        point: {
+          hitRadius: 20,
+        },
+      },
       scales: {
         y: {
           min: 1,

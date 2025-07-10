@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Full Stack",
+    "Projects": [
+      {
+        "Path": "Manager.Server\\Manager.Server.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "manager.client\\manager.client.esproj",
+        "Action": "Start",
+        "DebugTarget": "localhost (Chrome)"
+      }
+    ]
+  },
+  {
+    "Name": "Server Only",
+    "Projects": [
+      {
+        "Path": "Manager.Server\\Manager.Server.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      }
+    ]
+  }
+]

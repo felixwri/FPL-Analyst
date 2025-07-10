@@ -1,31 +1,28 @@
+using Manager.Server.Interfaces;
+using Manager.Server.Models;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Manager.Server.Source
 {
     public class Cache
     {
-        private static readonly Cache instance = new();
+        public GameWeek GameWeek { get; set; } = new();
+        public List<Fixture> Fixtures { get; set; } = [];
+        public Dictionary<int, TeamData> Teams { get; set; } = [];
+        public Dictionary<int, Position> Positions { get; set; } = [];
+        public Dictionary<int, PlayerData> Players { get; set; } = [];
+        public List<UpcomingFixtures> AllUpcomingFixtures { get; set; } = [];
 
-        public GameWeek GameWeek = new();
-        public List<Fixture> Fixtures = [];
-        public Dictionary<int, TeamData> Teams = [];
-        public Dictionary<int, Position> Positions = [];
-        public Dictionary<int, PlayerData> Players = [];
-        public List<UpcomingFixtures> AllUpcomingFixtures = [];
+        private readonly ILogger<Cache> _logger;
 
-        private Cache()
+        public Cache(ILogger<Cache> logger)
         {
-            Console.WriteLine("Pre-Processing");
-            Load();
+            _logger = logger;
         }
 
-        private async void Load()
+        public void Initialise()
         {
-            Prefetch prefetch = new();
-            GameWeek = await prefetch.GetStaticContent();
-            Positions = await prefetch.GetPositionAssignment();
-            Teams = await prefetch.GetTeamAssignment();
-            Fixtures = await prefetch.GetFixtures();
-            Players = await prefetch.GetPlayerAssignment();
-
+            _logger.LogInformation("Initialising Cache");
             ProcessFixtures();
         }
 
@@ -35,17 +32,9 @@ namespace Manager.Server.Source
         /// </summary>
         private void ProcessFixtures()
         {
-            AllUpcomingFixtures = PreProcessing.ProcessFixtures(Fixtures, Teams, limit: 5);
+            AllUpcomingFixtures = FutureFixtureProcessor.ProcessFixtures(Fixtures, Teams, limit: 5);
         }
 
-        public static Cache Instance
-        {
-            get { return instance; }
-        }
-
-        public int Week
-        {
-            get { return GameWeek.Id; }
-        }
+        public int Week => GameWeek.Id;
     }
 }

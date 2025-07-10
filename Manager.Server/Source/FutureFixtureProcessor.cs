@@ -1,6 +1,8 @@
+using Manager.Server.Models;
+
 namespace Manager.Server.Source
 {
-    public class PreProcessing
+    public class FutureFixtureProcessor
     {
         public static List<UpcomingFixtures> ProcessFixtures(
             List<Fixture> Fixtures,
@@ -44,7 +46,9 @@ namespace Manager.Server.Source
 
                             futureFixture.RelativeDifficulty = difficulty;
                             futureFixture.OpponentDifficulty = awayTeam.Strength_Overall_Away;
-                            futureFixture.Kickoff = fixture.Kickoff_Time;
+                            if (fixture.Kickoff_Time != null) {
+                                futureFixture.Kickoff = (DateTime)fixture.Kickoff_Time;
+                            }
                             upcomingFixtures.Fixtures.Add(futureFixture);
                         }
                         n++;
@@ -68,7 +72,10 @@ namespace Manager.Server.Source
 
                             futureFixture.RelativeDifficulty = difficulty;
                             futureFixture.OpponentDifficulty = homeTeam.Strength_Overall_Away;
-                            futureFixture.Kickoff = fixture.Kickoff_Time;
+                            if (fixture.Kickoff_Time != null) {
+                                futureFixture.Kickoff = (DateTime)fixture.Kickoff_Time;
+                            }
+                            
                             upcomingFixtures.Fixtures.Add(futureFixture);
                         }
 

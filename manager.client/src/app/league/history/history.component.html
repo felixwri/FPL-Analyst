@@ -7,10 +7,12 @@
     <button class="g-button" (click)="historyChart('points')">Points</button>
   </div>
   <div class="chart-flex">
-    <div class="chart-container">
-      @if (chart.hasData) {
-      <canvas class="chart" baseChart [data]="chart.data" [options]="chart.options" [type]="'line'"> </canvas>
-      }
+    <div class="chart-scroll">
+      <div class="chart-container">
+        @if (chart.hasData) {
+        <canvas class="chart" baseChart [data]="chart.data" [options]="chart.options" [type]="'line'"> </canvas>
+        }
+      </div>
     </div>
     <div class="chart-labels">
       @for (player of league; track $index) {
