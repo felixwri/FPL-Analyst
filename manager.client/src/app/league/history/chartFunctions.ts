@@ -2,12 +2,35 @@ import { LeagueHistory } from '../../../types';
 import { ColorMap } from './colorHandler';
 import { ChartHandler } from './history.component';
 
+const limit = 10;
+
 function generateLabels(weeks: number) {
   let labels = [];
-  for (let i = 1; i <= weeks; i++) {
+  for (let i = weeks - limit; i <= weeks; i++) {
     labels.push('W ' + i.toString());
   }
   return labels;
+}
+
+function processWeeks(
+  league: LeagueHistory[],
+  weeks: number,
+  allWeeks: { id: number; points: number; position: number }[][],
+  teamPositions: any,
+) {
+  for (let i = 0; i < league.length; i++) {
+    for (let week = 0; week < weeks; week++) {
+      let p = allWeeks[week]?.find((x) => x.id === league?.[i]?.id);
+      if (p) teamPositions[league[i].id].positions.push(p.position);
+    }
+  }
+}
+
+function limitTeamPositions(teamPositions: any) {
+  for (let team in teamPositions) {
+    const positions = teamPositions[team].positions;
+    teamPositions[team].positions = positions.slice(limit);
+  }
 }
 
 export function calculatePosition(chart: ChartHandler, league: LeagueHistory[], colorMap: ColorMap) {
@@ -36,12 +59,9 @@ export function calculatePosition(chart: ChartHandler, league: LeagueHistory[], 
     allWeeks.push(sorted);
   }
 
-  for (let i = 0; i < league.length; i++) {
-    for (let week = 0; week < weeks; week++) {
-      let p = allWeeks[week]?.find((x) => x.id === league?.[i]?.id);
-      if (p) teamPositions[league[i].id].positions.push(p.position);
-    }
-  }
+  processWeeks(league, weeks, allWeeks, teamPositions);
+
+  limitTeamPositions(teamPositions);
 
   chart.setLabels(labels);
 
@@ -87,12 +107,9 @@ export function calculatePositionCumilative(chart: ChartHandler, league: LeagueH
     allWeeks.push(sorted);
   }
 
-  for (let i = 0; i < league.length; i++) {
-    for (let week = 0; week < weeks; week++) {
-      let p = allWeeks[week]?.find((x) => x.id === league?.[i]?.id);
-      if (p) teamPositions[league[i].id].positions.push(p.position);
-    }
-  }
+  processWeeks(league, weeks, allWeeks, teamPositions);
+
+  limitTeamPositions(teamPositions);
 
   chart.setLabels(labels);
 
@@ -159,12 +176,9 @@ export function calcPositions(chart: ChartHandler, league: LeagueHistory[], colo
     allWeeks.push(sorted);
   }
 
-  for (let i = 0; i < league.length; i++) {
-    for (let week = 0; week < weeks; week++) {
-      let p = allWeeks[week]?.find((x) => x.id === league?.[i]?.id);
-      if (p) teamPositions[league[i].id].positions.push(p.position);
-    }
-  }
+  processWeeks(league, weeks, allWeeks, teamPositions);
+
+  limitTeamPositions(teamPositions);
 
   for (let team in teamPositions) {
     let col = colorMap[teamPositions[team].name];

@@ -85,6 +85,13 @@
     margin: 0 0.2rem;
 }
 
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 @media screen and (min-width: 1200px) {
     .chart-container {
         width: 40vw;

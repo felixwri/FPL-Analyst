@@ -13,11 +13,11 @@ namespace Manager.Server.Controllers
     public class TeamController : ControllerBase
     {
         private readonly ILogger<TeamController> _logger;
-        private readonly HttpFetchService _fetchService;
+        private readonly IHttpFetchService _fetchService;
         private readonly ILiveDataService _liveDataService;
         private readonly Cache _cache;
 
-        public TeamController(ILogger<TeamController> logger, HttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
+        public TeamController(ILogger<TeamController> logger, IHttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
         {
             _logger = logger;
             _fetchService = fetchService;

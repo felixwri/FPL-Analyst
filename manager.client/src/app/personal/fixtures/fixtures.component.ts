@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class FixturesComponent {
   public upcomingFixtures: UpcomingFixtures[] = [];
+  public hasFixtures: boolean = true;
   public chart: ChartHandler = new ChartHandler();
 
   @ViewChild('least') least!: ElementRef;
@@ -28,6 +29,13 @@ export class FixturesComponent {
     this.apiService.getFixtures().subscribe((data) => {
       if (data) {
         this.upcomingFixtures = data;
+
+        let fixturesCount = this.upcomingFixtures[0]?.fixtures?.length || 0;
+
+        if (!fixturesCount) {
+          this.hasFixtures = false;
+        }
+
         this.processFixtures();
         console.log(data);
       }

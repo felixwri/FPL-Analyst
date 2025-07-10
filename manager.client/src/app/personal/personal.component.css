@@ -17,14 +17,8 @@
 
 #row-2 {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-#row-2>div:first-child {
-    margin-right: 1rem;
-    flex-grow: 1;
-    height: 50vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
@@ -44,11 +38,6 @@
     #row-1 {
         flex-direction: column;
     }
-
-    #row-2 {
-        flex-direction: column;
-    }
-
 
     #team-picks {
         margin-right: 0;

@@ -15,11 +15,11 @@ namespace Manager.Server.Controllers
     {
 
         private readonly ILogger<LeagueController> _logger;
-        private readonly HttpFetchService _fetchService;
+        private readonly IHttpFetchService _fetchService;
         private readonly ILiveDataService _liveDataService;
         private readonly Cache _cache;
 
-        public LeagueController(ILogger<LeagueController> logger, HttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
+        public LeagueController(ILogger<LeagueController> logger, IHttpFetchService fetchService, ILiveDataService liveDataService, Cache cache)
         {
             _logger = logger;
             _fetchService = fetchService;
